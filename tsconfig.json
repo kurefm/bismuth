@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "listEmittedFiles": true,
+    "listFiles": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
+    "lib": ["es6"],
+    "types": ["reflect-metadata", "node"]
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "bismuth",
+  "version": "0.1.0-dev",
+  "description": "A powerful tools to monitor your network.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://KureFM@gitlab.com/KureFM/bismuth.git"
+  },
+  "keywords": [
+    "nmap",
+    "suricata",
+    "bismuth",
+    "monitor"
+  ],
+  "author": "Kure Fukumakoto",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2",
+    "inversify": "^3.3.0",
+    "inversify-express-utils": "^3.3.0",
+    "reflect-metadata": "^0.1.10",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.0.35",
+    "gulp": "^3.9.1",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^2.5.1",
+    "gulp-tslint": "^7.1.0",
+    "gulp-typescript": "^3.1.6",
+    "gulp-uglify": "^2.1.2",
+    "tslint": "^5.0.0",
+    "typescript": "^2.2.2"
+  }
+}
