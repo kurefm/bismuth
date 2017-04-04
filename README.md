@@ -1,7 +1,7 @@
 # Bismuth
 A powerful tools to monitor your network.
 
-## Base
+### Base
 
 基础工具：
 1. nmap             网络扫描与主机发现
@@ -35,10 +35,12 @@ gulp.js plugins:
 前端框架：
 1. ember.js
 
-
-## Project Structure
+### Project Structure
 
 1. Host Scaner Agent - 主机发现代理，用于控制nmap，获取网络内主机的信息
 2. IDS Agent         - IDS代理，用于控制suricata
 3. Manager System    - 管理系统，用于配置代理、管理和监控代理
 
+### License
+
+MIT.
