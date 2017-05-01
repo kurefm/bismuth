@@ -1,0 +1,33 @@
+http:
+  host: '0.0.0.0'
+  port: 8300
+
+nmap:
+  bin: /usr/local/bin/nmap
+
+hs:
+  network: '192.168.1.1/24'
+  interval: 10
+  detectService: false
+  detectOS: false
+
+elasticsearch:
+  nodes: ['localhost:9200']
+
+winston:
+  logger:
+    console:
+      level: debug
+      colorize: all
+    dailyRotateFile:
+      level: debug
+      filename: ./log/bismuth
+      datePattern: .yyyy-MM-dd.log
+      maxsize: 10000000
+      maxFiles: 30
+      zippedArchive: true
+  labels:
+    - Node
+    - HS-Agent
+    - IDS-Agent
+    - HTTP
