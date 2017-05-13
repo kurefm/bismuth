@@ -1,4 +1,5 @@
-const config = require('../config');
+const localConfig = require('../config');
+const remoteConfig = require('./config');
 const logger = require('../logger')['hs-agent'];
 const { exec, xml2js } = require('../utils');
 const es = require('./es');
@@ -10,7 +11,7 @@ function scan() {
   if (config.hs.detectOS) options.push('-O');
   if (options.length === 0) options.push('-sP');
 
-  let cmd = [config.nmap.bin, '-oX', '-', config.hs.network, ...options];
+  let cmd = [localConfig.nmap.bin, '-oX', '-', config.hs.network, ...options];
   logger.info(`Scan host with cmd: ${cmd.join(' ')}`);
   return exec(cmd);
 }

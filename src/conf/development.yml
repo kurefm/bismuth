@@ -5,14 +5,14 @@ http:
 nmap:
   bin: /usr/local/bin/nmap
 
-hs:
-  network: '192.168.1.1/24'
-  interval: 10
-  detectService: false
-  detectOS: false
-
 elasticsearch:
   nodes: ['localhost:9200']
+
+bismuth:
+  index: .bismuth
+  type: config
+  id: 1f679a68-680b-4f93-9676-723836a8fdc9
+
 
 winston:
   logger:
@@ -31,3 +31,4 @@ winston:
     - HS-Agent
     - IDS-Agent
     - HTTP
+    - Elasticsearch
