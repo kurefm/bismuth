@@ -1,0 +1,18 @@
+{{#if item.context}}
+  {{#link-to item.route item.context}}
+    {{#if item.icon}}
+      <i class={{item.icon}}></i>
+    {{/if}}
+    {{item.label}}
+  {{/link-to}}
+{{else}}
+  {{#link-to item.route}}
+    {{#if item.icon}}
+      <i class={{item.icon}}></i>
+    {{/if}}
+    {{item.label}}
+  {{/link-to}}
+{{/if}}
+{{#if hasSubmenu}}
+  {{ma-menu menu=item.submenu}}
+{{/if}}

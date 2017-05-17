@@ -6,7 +6,11 @@ const Router = Ember.Router.extend({
   rootURL: config.rootURL
 });
 
-Router.map(function() {
+Router.map(function () {
+  this.route('index', { path: '/' }, function () {
+    this.route('setting', { resetNamespace: true });
+    this.route('jobs', { resetNamespace: true });
+  });
 });
 
 export default Router;

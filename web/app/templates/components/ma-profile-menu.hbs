@@ -1,0 +1,12 @@
+<a href="#">
+  <div class="profile-pic">
+    {{img-initial name=user.username charCount=1}}
+  </div>
+
+  <div class="profile-info">
+    {{user.username}}
+    {{#if hasMenu}}
+      <i class="zmdi zmdi-caret-down"></i>
+    {{/if}}
+  </div>
+</a>

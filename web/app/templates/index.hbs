@@ -1,0 +1,13 @@
+{{#ma-app}}
+  {{ma-header logo=(t 'app.name')}}
+  {{#ma-section}}
+    {{#ma-sidebar}}
+      {{ma-profile-menu user=user}}
+      {{ma-menu class='main-menu' menu=menu}}
+    {{/ma-sidebar}}
+    {{#ma-content}}
+      {{outlet}}
+    {{/ma-content}}
+  {{/ma-section}}
+  {{ma-footer copyright=(t 'app.copyright')}}
+{{/ma-app}}
