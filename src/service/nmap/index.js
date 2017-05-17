@@ -50,7 +50,8 @@ function init() {
   scheduleJob('nmap:hostDetection', remoteConfig.config()['hs:hostDetection:cron'], () => {
     let config = remoteConfig.config();
     logger.debug(`Host detection run on network: ${config['hs:network']}`);
-    exec([localConfig.nmap.bin, '-oX', '-', config['hs:network'], '-sP']).then(resultProcess.push, logger.error);
+    exec([localConfig.nmap.bin, '-oX', '-', config['hs:network'], '-sP'])
+      .then(resultProcess.push, logger.error);
   });
 }
 
