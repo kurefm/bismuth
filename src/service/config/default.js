@@ -1,6 +1,6 @@
 module.exports = {
   'hs:network': '192.168.1.1/24',
-  'hs:interval': 10,
-  'hs:detectService': false,
-  'hs:detectOS': false,
+  'hs:hostDetection:cron': '*/30 * * * * *',
+  'hs:osDetection:auto': true,
+  'hs:versionDetection:auto': true,
 };

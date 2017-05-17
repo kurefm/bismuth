@@ -10,6 +10,12 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+app.use(function (req, res, next) {
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.header('Expires', '-1');
+  res.header('Pragma', 'no-cache');
+  next();
+});
 
 // load routes
 let routeDir = join(__dirname, 'routes');
@@ -20,7 +26,7 @@ readdirSync(routeDir).forEach(filename => {
   app.use(routeName === 'index' ? '/' : '/' + routeName, route);
 });
 
-require('./service/config').init();
+require('./loader').init();
 
 app.listen(port, host, () => logger.info(`http service run on ${host}:${port}`));
 

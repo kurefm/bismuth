@@ -1,73 +1,22 @@
-const client = require('../es');
-const { bismuth } = require('../../config');
-const logger = require('../../logger').elasticsearch;
-const { merge } = require('lodash');
-const { waterfall } = require('async');
+const { ensureExists, client } = require('../es');
+const {
+  bismuth: { id, config: { index, type } }
+} = require('../../config');
+const { scheduleJob } = require('../job-scheduler');
+const logger = require('../../logger').http;
 
 let config = {};
 
-function indexExists() {
-  return new Promise((resolve, reject) => {
-    client.cluster.health({
-      timeout: '5s', // tells es to not sit around and wait forever
-      index: bismuth.index,
-      ignore: [408]
-    }).then(resp => {
-      if (!resp || resp.timed_out) {
-        resolve(false);
-      } else {
-        resolve(true);
-      }
-    }, reject);
-  });
-}
-
-function configExists() {
-  return new Promise((resolve, reject) => {
-    client.exists({
-      index: bismuth.index,
-      type: bismuth.type,
-      id: bismuth.id,
-    }).then(resolve, reject);
-  });
-}
-
-function initConfig() {
-  return new Promise((resolve, reject) => {
-    client.create({
-      index: bismuth.index,
-      type: bismuth.type,
-      id: bismuth.id,
-      body: require('./default')
-    }).then(resolve, reject);
-  });
-}
-
 function init() {
-  return new Promise((resolve, reject) => {
-    waterfall([
-      callback => indexExists().then(result => callback(null, result), callback),
-      (exists, callback) => {
-        if (exists === false) callback(null, false);
-        else configExists().then(result => callback(null, result), callback);
-      },
-      (exists, callback) => {
-        if (exists === true) callback();
-        else initConfig().then(() => callback(), callback);
-      }
-    ], error => {
-      if (error) reject(error);
-      load().then(resolve, reject);
-    });
-  });
+  return ensureExists(index, type, id, require('./default')).then(load).then(autoRefresh);
 }
 
 function load() {
   return new Promise((resolve, reject) => {
     client.get({
-      index: bismuth.index,
-      type: bismuth.type,
-      id: bismuth.id
+      index,
+      type,
+      id
     }, (error, resp) => {
       if (error) reject(error);
       if (resp) {
@@ -79,13 +28,19 @@ function load() {
   });
 }
 
-function update(config) {
-  return client.update({
-    index: bismuth.index,
-    type: bismuth.type,
-    id: bismuth.id,
-    body: { doc: config }
+function autoRefresh() {
+  scheduleJob('config:refresh', '*/10 * * * * *', () => {
+    load().then(() => logger.debug('Reload config')).catch(logger.error);
   });
+}
+
+function update(config) {
+  return new Promise((resolve, reject) => client.update({
+    index,
+    type,
+    id,
+    body: { doc: config }
+  }).then(resolve, reject));
 }
 
 module.exports = {

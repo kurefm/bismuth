@@ -9,9 +9,14 @@ elasticsearch:
   nodes: ['localhost:9200']
 
 bismuth:
-  index: .bismuth
-  type: config
   id: 1f679a68-680b-4f93-9676-723836a8fdc9
+  mode: ['hs', 'ids', 'node']
+  config:
+    index: .bismuth
+    type: config
+  alive:
+    index: .bismuth
+    type: alive
 
 
 winston:
@@ -32,3 +37,5 @@ winston:
     - IDS-Agent
     - HTTP
     - Elasticsearch
+    - Core
+    - Nmap

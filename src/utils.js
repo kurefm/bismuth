@@ -27,7 +27,14 @@ function xml2js(xml, options) {
   });
 }
 
+class ActionBlock {
+  constructor(action) {
+    this.action = action;
+  }
+}
+
 module.exports = {
   exec,
-  xml2js
+  xml2js,
+  ActionBlock
 };

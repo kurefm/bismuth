@@ -1,10 +1,30 @@
+http:
+  host: '0.0.0.0'
+  port: 8300
+
+nmap:
+  bin: /usr/local/bin/nmap
+
+elasticsearch:
+  nodes: ['localhost:9200']
+
+bismuth:
+  id: 1f679a68-680b-4f93-9676-723836a8fdc9
+  config:
+    index: .bismuth
+    type: config
+  alive:
+    index: .bismuth
+    type: alive
+
+
 winston:
   logger:
     console:
-      level: info
+      level: debug
       colorize: all
     dailyRotateFile:
-      level: info
+      level: debug
       filename: ./log/bismuth
       datePattern: .yyyy-MM-dd.log
       maxsize: 10000000
@@ -14,3 +34,5 @@ winston:
     - Node
     - HS-Agent
     - IDS-Agent
+    - HTTP
+    - Elasticsearch
