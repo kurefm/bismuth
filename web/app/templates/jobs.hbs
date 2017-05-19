@@ -2,9 +2,11 @@
   <table class="table">
     <thead>
       <tr>
-        <th>任务名称</th>
-        <th>任务号</th>
-        <th>Cron</th>
+        <th>{{t 'labels.jobs.name'}}</th>
+        <th>{{t 'labels.jobs.jobkey'}}</th>
+        <th>{{t 'labels.jobs.cron'}}</th>
+        <th>{{t 'labels.jobs.start_at'}}</th>
+        <th>{{t 'labels.jobs.count'}}</th>
       </tr>
     </thead>
     <tbody>
@@ -12,7 +14,9 @@
         <tr>
           <th>{{t job.id}}</th>
           <th>{{job.jobkey}}</th>
-          <th>{{job.cron}}</th>
+          <th><code>{{job.cron}}</code></th>
+          <th>{{moment-format job.start_at 'LLL'}}</th>
+          <th>{{job.count}}</th>
         </tr>
       {{/each}}
     </tbody>

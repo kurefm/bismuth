@@ -24,6 +24,12 @@ module.exports = function(environment) {
 
     i18n: {
       defaultLocale: 'zh-cn'
+    },
+
+    moment: {
+      includeTimezone: 'all',
+      allowEmpty: true,
+      includeLocales: ['zh-cn']
     }
   };
 
