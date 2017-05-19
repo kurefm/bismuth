@@ -1,5 +1,5 @@
 const { queue } = require('async');
-const { remove } = require('lodash');
+const { remove, isEmpty } = require('lodash');
 const { exec, xml2js } = require('../../utils');
 const logger = require('../../logger').nmap;
 const config = require('../../config');
@@ -60,6 +60,9 @@ const resultProcess = queue((result, callback) => {
 });
 
 function bulkStore(parsed) {
+  if (isEmpty(parsed.hosts) && isEmpty(parsed.ports) && isEmpty(parsed.os)) {
+    return;
+  }
   let body = [];
   parsed.hosts.forEach(host => {
     body.push({ index: { _index: 'nmap', _type: 'host' } });

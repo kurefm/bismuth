@@ -27,9 +27,9 @@ function parseHost(host) {
   let mac = getAddress(host.address, 'mac');
   let ipv4 = getAddress(host.address, 'ipv4');
 
-  if (has(mac, 'addr')) result.mac = mac.addr
-  if (has(mac, 'vendor')) result.vendor = mac.vendor
-  if (has(ipv4, 'addr')) result.ipv4 = ipv4.addr
+  if (has(mac, 'addr')) result.mac = mac.addr;
+  if (has(mac, 'vendor')) result.vendor = mac.vendor;
+  if (has(ipv4, 'addr')) result.ipv4 = ipv4.addr;
 
   return result;
 }
@@ -73,10 +73,10 @@ function parseOSs(json) {
     if (!has(host, 'os') && !isArray(get(host, 'os'))) {
       continue;
     }
-    for (let port of host.ports[0].port) {
+    for (let os of host.os) {
       result.push(merge(
         parseHost(host),
-        parseOS(port),
+        parseOS(os),
         { scan_at }
       ));
     }
