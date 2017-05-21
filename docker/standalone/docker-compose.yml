@@ -8,6 +8,7 @@ node:
   image: bismuth/agent:0.1.0-dev
   environment:
     ELASTICSEARCH_URL: http://elasticsearch:9200
+    NODE_ENV: production
   links:
     - elasticsearch
   ports:
