@@ -1,0 +1,45 @@
+http:
+  host: '0.0.0.0'
+  port: 8300
+
+nmap:
+  bin: /usr/local/bin/nmap
+
+elasticsearch:
+  url: 'http://localhost:9200'
+  sniff:
+    interval: 120000
+
+bismuth:
+  # direct `value`(uuid) or `file`(auto generate and store in .identification file)
+  id: 1f679a68-680b-4f93-9676-723836a8fdc9
+  # `all`(hs, ids, node), `agent`(hs, ids), `hs`, `ids`, `node`
+  mode: all
+  config:
+    index: .bismuth
+    type: config
+  alive:
+    index: .bismuth
+    type: alive
+
+
+winston:
+  logger:
+    console:
+      level: debug
+      colorize: all
+    dailyRotateFile:
+      level: debug
+      filename: ./log/bismuth
+      datePattern: .yyyy-MM-dd.log
+      maxsize: 10000000
+      maxFiles: 30
+      zippedArchive: true
+  labels:
+    - Node
+    - HS-Agent
+    - IDS-Agent
+    - HTTP
+    - Elasticsearch
+    - Core
+    - Nmap

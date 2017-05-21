@@ -1,0 +1,14 @@
+elasticsearch:
+  image: bismuth/elasticsearch:0.1.0-dev
+  ports:
+    - 9200:9200
+    - 9300:9300
+
+node:
+  image: bismuth/agent:0.1.0-dev
+  environment:
+    ELASTICSEARCH_URL: http://elasticsearch:9200
+  links:
+    - elasticsearch
+  ports:
+    - 8300:8300

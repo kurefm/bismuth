@@ -3,7 +3,7 @@ const { resolve, dirname } = require('path');
 const { existsSync, mkdirSync } = require('fs');
 const winston = require('winston');
 require('winston-daily-rotate-file');
-const config = require('./config').winston;
+const config = require('config').winston;
 const { assign } = Object;
 
 let baseConfig = config.logger;

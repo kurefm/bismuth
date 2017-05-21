@@ -1,4 +1,4 @@
-const localConfig = require('../../config');
+const localConfig = require('config');
 const remoteConfig = require('../config');
 const { scheduleJob } = require('../job-scheduler.js');
 const logger = require('../../logger').nmap;

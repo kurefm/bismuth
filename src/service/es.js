@@ -1,10 +1,10 @@
 const { Client } = require('elasticsearch');
 const { waterfall } = require('async');
 
-const config = require('../config').elasticsearch;
+const config = require('config').elasticsearch;
 
 const client = new Client({
-  hosts: config.nodes
+  host: config.url
 });
 
 function indexExists(index) {

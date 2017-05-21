@@ -1,0 +1,9 @@
+http:
+  host: HTTP_HOST
+  port: HTTP_PORT
+
+nmap:
+  bin: NMAP_BIN
+
+elasticsearch:
+  url: ELASTICSEARCH_URL

@@ -2,7 +2,7 @@ const { scheduleJob } = require('./job-scheduler');
 const { ensureExists, client } = require('./es');
 const {
   bismuth: { id, alive: { index, type } }
-} = require('../config');
+} = require('config');
 const logger = require('../logger').core;
 
 function init() {

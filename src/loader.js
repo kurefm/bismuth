@@ -1,4 +1,4 @@
-const { bismuth } = require('./config');
+const { bismuth } = require('config');
 
 function initBaseService() {
   return Promise.all([

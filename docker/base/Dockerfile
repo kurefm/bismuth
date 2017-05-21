@@ -10,4 +10,4 @@ RUN apk add --no-cache nodejs \
 && npm install pm2 -g \
 && npm cache clean
 
-ENTRYPOINT ["sh"]
+CMD ["sh"]
