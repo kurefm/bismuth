@@ -10,6 +10,7 @@ Router.map(function () {
   this.route('index', { path: '/' }, function () {
     this.route('setting', { resetNamespace: true });
     this.route('jobs', { resetNamespace: true });
+    this.route('hosts', { resetNamespace: true });
   });
 });
 

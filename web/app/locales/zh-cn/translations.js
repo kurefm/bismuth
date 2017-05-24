@@ -11,6 +11,9 @@ export default {
   'labels.jobs.start_at': '开始时间',
   'labels.jobs.count': '运行次数',
 
+  'labels.host-scan': '主机发现',
+  'labels.hosts': '主机列表',
+
   'alive:keepAlive': '在线心跳',
   'config:refresh': '刷新配置',
   'nmap:hostDetection': '主机发现'

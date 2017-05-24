@@ -6,7 +6,7 @@
     "material-shadows": "~2.0.1",
     "Waves": "waves#~0.7.4",
     "malihu-custom-scrollbar-plugin": "~3.1.0",
-    "bootstrap-sweetalert": "~0.4.5",
+    "bootstrap-sweetalert": "~1.0.1",
     "material-design-iconic-font": "https://github.com/zavoloklom/material-design-iconic-font/releases/download/2.2.0/material-design-iconic-font.zip",
     "initial": "https://github.com/judesfernando/initial.js.git#0.1.0"
   }

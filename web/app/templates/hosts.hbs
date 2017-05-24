@@ -1,0 +1,114 @@
+{{#ma-card title='主机列表'}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>IPv4</th>
+      <th>MAC</th>
+      <th>供应商</th>
+      <th>发现时间</th>
+      <th>发现原因</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |host|}}
+    <tr>
+      <th>{{host.ipv4}}</th>
+      <th><code>{{host.mac}}</code></th>
+      <th>{{host.vendor}}</th>
+      <th>{{moment-from-now host.scan_at 'LLL'}}</th>
+      <th>{{host.up_reason}}</th>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{/ma-card}}
+
+{{ma-block-header title='主机详情' desc='192.168.8.124'}}
+
+
+<div class="card" id="profile-main" style="min-height: 400px">
+  <div class="pm-overview c-overflow">
+    <div class="pmo-block pmo-contact hidden-xs">
+      <h2>基本信息</h2>
+
+      <dl>
+        <dt>操作系统</dt>
+        <dd>Linux</dd>
+        <dt>系统版本</dt>
+        <dd>2.6.9 - 2.6.33</dd>
+        <dt>CPE 设备代码</dt>
+        <dd><code>cpe:/o:linux:linux_kernel:2.6</code></dd>
+      </dl>
+      <dl>
+        <dt>IPv4</dt>
+        <dd>192.168.8.124</dd>
+        <dt>MAC</dt>
+        <dd><code>0C:C4:7A:1C:80:78</code></dd>
+        <dt>供应商</dt>
+        <dd>Super Micro Computer</dd>
+      </dl>
+      <dl>
+        <dt>最后发现时间</dt>
+        <dd>5 分钟前</dd>
+      </dl>
+
+    </div>
+  </div>
+
+  <div class="pm-body clearfix">
+    <ul class="tab-nav tn-justified">
+      <li class="active waves-effect"><a href="#">端口信息</a></li>
+      <li class="waves-effect"><a href="#">系统探测记录</a></li>
+      <li class="waves-effect"><a href="#">主机发现记录</a></li>
+    </ul>
+
+    <div class="pmb-block" style="padding-left: 0; padding-right: 0;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>端口</th>
+            <th>协议</th>
+            <th>服务类型</th>
+            <th>服务</th>
+            <th>版本信息</th>
+            <th>扩展信息</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>22</th>
+            <th>tcp</th>
+            <th>ssh</th>
+            <th>Dropbear sshd</th>
+            <th>2013.60</th>
+            <th>protocol 2.0</th>
+          </tr>
+          <tr>
+            <th>80</th>
+            <th>tcp</th>
+            <th>http</th>
+            <th>lighttpd</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>443</th>
+            <th>tcp</th>
+            <th>http</th>
+            <th>lighttpd</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>5900</th>
+            <th>tcp</th>
+            <th>vnc</th>
+            <th>VNC</th>
+            <th></th>
+            <th>protocol 3.8</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
