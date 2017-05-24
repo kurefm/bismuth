@@ -19,10 +19,8 @@ python packages:
 node modules:
 1. express          WEB框架
 2. pm2              进程管理
-3. inversify        依赖注入
-4. inversify-express-utils
-5. winston          日志
-6. gulp             JavaScript构建工具
+3. winston          日志
+4. gulp             JavaScript构建工具
 
 前端框架：
 1. ember.js
