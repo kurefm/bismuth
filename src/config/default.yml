@@ -3,7 +3,7 @@ http:
   port: 8300
 
 nmap:
-  bin: /usr/local/bin/nmap
+  bin: nmap
 
 elasticsearch:
   url: 'http://localhost:9200'
