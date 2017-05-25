@@ -1,7 +1,6 @@
 node_modules/
 dist/
 *.pyc
-.vscode/
 .vagrant/
 log/
 web/dist/
