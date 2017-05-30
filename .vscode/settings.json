@@ -3,6 +3,7 @@
     "**/.git": true,
     "**/dist": true,
     "**/node_modules": true,
-    "**/bower_components": true
+    "**/bower_components": true,
+    "**/tmp": true
   }
 }
