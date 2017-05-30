@@ -5,22 +5,33 @@ http:
 nmap:
   bin: nmap
 
+suricate:
+  bin: suricate
+  config-path: /etc/suricata/suricata.yml
+  rules-path: /etc/suricata/rules
+
 elasticsearch:
   url: 'http://localhost:9200'
   sniff:
     interval: 120000
 
 bismuth:
-  # direct `value`(uuid) or `file`(auto generate and store in .identification file)
-  id: 1f679a68-680b-4f93-9676-723836a8fdc9
   # `all`(hs, ids, node), `agent`(hs, ids), `hs`, `ids`, `node`
   mode: all
+  api:
+    prefix: '/api/v1/'
   config:
     index: .bismuth
     type: config
+    cron: '*/10 * * * * *'
   alive:
     index: .bismuth
     type: alive
+    cron: '*/10 * * * * *'
+  info:
+    index: .bismuth
+    type: info
+    cron: '*/10 * * * * *'
 
 
 winston:
@@ -37,9 +48,7 @@ winston:
       zippedArchive: true
   labels:
     - Node
-    - HS-Agent
-    - IDS-Agent
-    - HTTP
     - Elasticsearch
-    - Core
+    - Base
     - Nmap
+    - Suricata

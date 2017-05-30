@@ -1,14 +1,17 @@
-const { ensureExists, client } = require('../es');
+const { ifNotExistsThenCreateDoc, client } = require('../es');
 const {
-  bismuth: { id, config: { index, type } }
-} = require('../../config');
+  bismuth: { config: { index, type, cron } }
+} = require('config');
 const { scheduleJob } = require('../job-scheduler');
-const logger = require('../../logger').http;
+const logger = require('../../logger').base;
+const { getId } = require('../../utils');
 
 let config = {};
 
+let id = getId();
+
 function init() {
-  return ensureExists(index, type, id, require('./default')).then(load).then(autoRefresh);
+  return ifNotExistsThenCreateDoc(index, type, id, require('./default')).then(load).then(autoRefresh);
 }
 
 function load() {
@@ -29,7 +32,7 @@ function load() {
 }
 
 function autoRefresh() {
-  scheduleJob('config:refresh', '*/10 * * * * *', () => {
+  scheduleJob('config:refresh', cron, () => {
     load().then(() => logger.debug('Reload config')).catch(logger.error);
   });
 }

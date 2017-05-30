@@ -5,7 +5,7 @@
         <th>{{t 'labels.jobs.name'}}</th>
         <th>{{t 'labels.jobs.jobkey'}}</th>
         <th>{{t 'labels.jobs.cron'}}</th>
-        <th>{{t 'labels.jobs.start_at'}}</th>
+        <th>{{t 'labels.jobs.startAt'}}</th>
         <th>{{t 'labels.jobs.count'}}</th>
       </tr>
     </thead>
@@ -15,7 +15,7 @@
           <th>{{t job.id}}</th>
           <th>{{job.jobkey}}</th>
           <th><code>{{job.cron}}</code></th>
-          <th>{{moment-format job.start_at 'LLL'}}</th>
+          <th>{{moment-format job.startAt 'LLL'}}</th>
           <th>{{job.count}}</th>
         </tr>
       {{/each}}

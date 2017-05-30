@@ -44,7 +44,7 @@ function createDoc(index, type, id, doc) {
   });
 }
 
-function ensureExists(index, type, id, doc) {
+function ifNotExistsThenCreateDoc(index, type, id, doc) {
   return new Promise((resolve, reject) => {
     waterfall([
       callback => indexExists(index).then(result => callback(null, result), callback),
@@ -65,5 +65,5 @@ function ensureExists(index, type, id, doc) {
 
 module.exports = {
   client,
-  ensureExists
+  ifNotExistsThenCreateDoc
 };

@@ -42,9 +42,10 @@ module.exports = function (defaults) {
   app.import('bower_components/animate.css/animate.css');
   app.import('bower_components/material-design-iconic-font/css/material-design-iconic-font.css');
 
-  app.import('bower_components/bootstrap-sweetalert/dist/sweetalert.js')
-  app.import('bower_components/bootstrap-sweetalert/dist/sweetalert.css')
+  app.import('bower_components/bootstrap-sweetalert/dist/sweetalert.js');
+  app.import('bower_components/bootstrap-sweetalert/dist/sweetalert.css');
 
+  app.import('bower_components/numeral/src/numeral.js');
   // app.import('vendor/material_admin/js/functions.js');
 
   return app.toTree(new Funnel('bower_components/material-design-iconic-font', {

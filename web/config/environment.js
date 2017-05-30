@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   var ENV = {
     modulePrefix: 'bismuth',
     environment: environment,
@@ -30,7 +30,20 @@ module.exports = function(environment) {
       includeTimezone: 'all',
       allowEmpty: true,
       includeLocales: ['zh-cn']
-    }
+    },
+
+    'ember-form-for': {
+      buttonClasses: ['btn'],
+      fieldClasses: ['form-group'],
+      fieldHasErrorClasses: 'has-error',
+      errorClasses: ['help-block'],
+      hintClasses: ['form-field--hint'],
+      inputClasses: ['form-control'],
+      labelClasses: ['control-label'],
+      resetClasses: ['btn btn-default'],
+      submitClasses: ['btn btn-primary'],
+      errorsPath: 'error.PROPERTY_NAME.validation',
+    },
   };
 
   if (environment === 'development') {

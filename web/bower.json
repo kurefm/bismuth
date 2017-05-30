@@ -8,6 +8,8 @@
     "malihu-custom-scrollbar-plugin": "~3.1.0",
     "bootstrap-sweetalert": "~1.0.1",
     "material-design-iconic-font": "https://github.com/zavoloklom/material-design-iconic-font/releases/download/2.2.0/material-design-iconic-font.zip",
-    "initial": "https://github.com/judesfernando/initial.js.git#0.1.0"
+    "initial": "https://github.com/judesfernando/initial.js.git#0.1.0",
+    "iCheck": "^1.0.2",
+    "numeral": "^2.0.6"
   }
 }

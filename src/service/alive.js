@@ -1,18 +1,21 @@
 const { scheduleJob } = require('./job-scheduler');
-const { ensureExists, client } = require('./es');
+const { ifNotExistsThenCreateDoc, client } = require('./es');
 const {
-  bismuth: { id, alive: { index, type } }
+  bismuth: { alive: { index, type, cron } }
 } = require('config');
-const logger = require('../logger').core;
+const logger = require('../logger').base;
+const { getId } = require('../utils');
+
+let id = getId();
 
 function init() {
-  return ensureExists(index, type, id, {
+  return ifNotExistsThenCreateDoc(index, type, id, {
     lastOnline: new Date().getTime()
   }).then(keepAlive);
 }
 
 function keepAlive() {
-  scheduleJob('alive:keepAlive', '*/10 * * * * *', () =>{
+  scheduleJob('alive:keepAlive', cron, () =>{
     client.update({
       index,
       type,

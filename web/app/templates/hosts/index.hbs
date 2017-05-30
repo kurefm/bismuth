@@ -2,11 +2,12 @@
 <table class="table">
   <thead>
     <tr>
-      <th>IPv4</th>
-      <th>MAC</th>
-      <th>供应商</th>
-      <th>发现时间</th>
-      <th>发现原因</th>
+      <th>{{t 'labels.hosts.ipv4'}}</th>
+      <th>{{t 'labels.hosts.mac'}}</th>
+      <th>{{t 'labels.hosts.vendor'}}</th>
+      <th>{{t 'labels.hosts.scanAt'}}</th>
+      <th>{{t 'labels.hosts.upReason'}}</th>
+      <th>{{t 'labels.hosts.total'}}</th>
     </tr>
   </thead>
   <tbody>
@@ -15,15 +16,16 @@
       <th>{{host.ipv4}}</th>
       <th><code>{{host.mac}}</code></th>
       <th>{{host.vendor}}</th>
-      <th>{{moment-from-now host.scan_at 'LLL'}}</th>
-      <th>{{host.up_reason}}</th>
+      <th>{{moment-from-now host.scanAt 'LLL'}}</th>
+      <th>{{host.upReason}}</th>
+      <th>{{host.total}}</th>
     </tr>
     {{/each}}
   </tbody>
 </table>
 {{/ma-card}}
 
-{{ma-block-header title='主机详情' desc='192.168.8.124'}}
+{{!--{{ma-block-header title='主机详情' desc='192.168.8.124'}}
 
 
 <div class="card" id="profile-main" style="min-height: 400px">
@@ -111,4 +113,4 @@
       </table>
     </div>
   </div>
-</div>
+</div>--}}

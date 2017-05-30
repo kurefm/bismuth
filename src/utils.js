@@ -1,5 +1,11 @@
 const { spawn } = require('child_process');
 const { parseString } = require('xml2js');
+const { existsSync, readFileSync, writeFileSync } = require('fs');
+const process = require('process');
+const { join } = require('path');
+const uuid = require('uuid/v1');
+
+const IDFILE = join(process.cwd(), '.identity');
 
 function exec(cmd) {
   return new Promise((resolve, reject) => {
@@ -33,8 +39,18 @@ class ActionBlock {
   }
 }
 
+function getId() {
+  if (existsSync(IDFILE)) {
+    return readFileSync(IDFILE).toString().trim();
+  }
+  let id = uuid();
+  writeFileSync(IDFILE, id);
+  return id;
+}
+
 module.exports = {
   exec,
   xml2js,
-  ActionBlock
+  ActionBlock,
+  getId
 };

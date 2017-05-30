@@ -1,4 +1,4 @@
-const { has, get, isArray, merge } = require('lodash');
+const { has, get, isArray, merge, mapKeys, isEqual } = require('lodash');
 
 function getAddress(json, type) {
   for (let { $ } of json) {
@@ -46,8 +46,8 @@ function parsePorts(json) {
     }
     for (let port of host.ports[0].port) {
       result.push(merge(
-        parseHost(host),
         parsePort(port),
+        parseHost(host),
         { scan_at }
       ));
     }
@@ -75,8 +75,8 @@ function parseOSs(json) {
     }
     for (let os of host.os) {
       result.push(merge(
+        mapKeys(parseOS(os), (v, k) => isEqual(k, 'vendor') ? 'os_vendor' : k),
         parseHost(host),
-        parseOS(os),
         { scan_at }
       ));
     }
