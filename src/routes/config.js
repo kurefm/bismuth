@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.put('/', (req, res) => {
-  return configService.update(req.body)
+  return configService.update(req.body.config)
     .then(configService.load)
     .then(config => res.json(config));
 });

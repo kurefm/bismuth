@@ -21,7 +21,7 @@ function keepAlive() {
       type,
       id,
       body: { doc: {
-        lastOnline: new Date().getTime()
+        last_online: new Date().getTime()
       }}
     }).catch(logger.error);
   });

@@ -11,8 +11,8 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    update(model) {
-      return this.get('ajax').put('/api/v1/config', { data: JSON.stringify(model) });
+    update(config) {
+      return this.get('ajax').put('/api/v1/config', { data: JSON.stringify({ config }) });
     }
   }
 });

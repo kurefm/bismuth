@@ -3,6 +3,7 @@ const { remove, isEmpty } = require('lodash');
 const { exec, xml2js } = require('../../utils');
 const logger = require('../../logger').nmap;
 const config = require('config');
+const remoteConfig = require('../config');
 const { setTimeout } = require('timers');
 const { parse } = require('./parser');
 const { client } = require('../es');
@@ -50,9 +51,10 @@ const versionDetectoin = queue((host, callback) => {
 const resultProcess = queue((result, callback) => {
   xml2js(result).then(parse).then(parsed => {
     logger.debug(`Process result: \n${JSON.stringify(parsed, null, 2)}`);
+    let rConfig = remoteConfig.config();
     parsed.hosts.forEach(host => {
-      osDetectoin.push(host.ipv4);
-      versionDetectoin.push(host.ipv4);
+      if (rConfig['hs:osDetection:auto']) osDetectoin.push(host.ipv4);
+      if (rConfig['hs:versionDetection:auto']) versionDetectoin.push(host.ipv4);
     });
     return parsed;
   }).then(bulkStore).catch(logger.error)
