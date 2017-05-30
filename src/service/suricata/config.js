@@ -2,7 +2,7 @@ const { safeLoad, safeDump } = require('js-yaml');
 const { readFile, writeFile } = require('fs');
 const { suricata } = require('config');
 const remoteConfig = require('../config');
-const { merge, isArray } = require('lodash');
+const { mergeWith, isArray } = require('lodash');
 const { WORKDIR, CONFIG_FILE } = require('./lancher');
 
 let origin = {};
@@ -18,7 +18,7 @@ function loadOrigin() {
 }
 
 function mixConfig(config) {
-  let mixed = merge(origin, config, (objValue, srcValue) => {
+  let mixed = mergeWith(origin, config, (objValue, srcValue) => {
     if (isArray(objValue)) {
       return srcValue;
     }
@@ -37,7 +37,9 @@ function generateConfigFile() {
         'port-groups': rConfig['ids:vars:port-groups']
       },
       'rule-files': rConfig['ids:enable-rules']
-    })), err => {
+    }), {
+      noCompatMode: true
+    }), err => {
       if (err) reject(err);
       else resolve(err);
     });
