@@ -1,11 +1,20 @@
-const { Client } = require('elasticsearch');
+const { Client, errors: { NoConnections } } = require('elasticsearch');
 const { waterfall } = require('async');
-
 const config = require('config').elasticsearch;
 
 const client = new Client({
   host: config.url
 });
+
+function waitElasticsearchStart() {
+  return new Promise((resolve, reject) => {
+    client.cluster.health({
+      timeout: '5s'
+    }, (error, resp, status) => {
+      console.log(error instanceof NoConnections);
+    });
+  });
+}
 
 function indexExists(index) {
   return new Promise((resolve, reject) => {
@@ -65,5 +74,6 @@ function ifNotExistsThenCreateDoc(index, type, id, doc) {
 
 module.exports = {
   client,
+  waitElasticsearchStart,
   ifNotExistsThenCreateDoc
 };

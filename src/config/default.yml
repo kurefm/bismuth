@@ -5,10 +5,11 @@ http:
 nmap:
   bin: nmap
 
-suricate:
-  bin: suricate
-  config-path: /etc/suricata/suricata.yml
+suricata:
+  bin: suricata
+  config-path: /etc/suricata/suricata.yaml
   rules-path: /etc/suricata/rules
+  log-path: /var/log/suricata
 
 elasticsearch:
   url: 'http://localhost:9200'

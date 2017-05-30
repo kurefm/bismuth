@@ -34,10 +34,12 @@ function initHsService() {
 
 function initIDSService() {
   logger.info('Load IDS services');
+  return require('./service/suricata').init();
 }
 
 function initNodeService(express) {
   logger.info('Load node services');
+  express.use(require('express').static('pubilc'));
   // load routes
   let routeDir = join(__dirname, 'routes');
   return new Promise((resolve, reject) => {
