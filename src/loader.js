@@ -6,6 +6,7 @@ const { join, basename } = require('path');
 const { includes } = require('lodash');
 const { waterfall } = require('async');
 const logger = require('./logger').base;
+const { underscored } = require('./utils');
 
 function getMode() {
   switch (mode) {
@@ -49,7 +50,7 @@ function initNodeService(express) {
         if (!filename.endsWith('.js')) return;
         let route = require(join(routeDir, filename));
         let routeName = basename(filename, '.js');
-        express.use(routeName === 'index' ? prefix : prefix + routeName, route);
+        express.use(routeName === 'index' ? prefix : prefix + underscored(routeName), route);
       });
       resolve();
     });

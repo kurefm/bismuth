@@ -21,9 +21,9 @@ function keepAlive() {
       type,
       id,
       body: { doc: {
-        last_online: new Date().getTime()
+        lastOnline: new Date().getTime()
       }}
-    }).catch(logger.error);
+    }).then(() => logger.debug('Keep alive')).catch(logger.error);
   });
 }
 

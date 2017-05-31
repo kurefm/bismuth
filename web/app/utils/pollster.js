@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const{
+const {
   run,
   run: { later, cancel }
 } = Ember;
@@ -17,6 +17,7 @@ export default Ember.Object.extend({
 
   _poll() {
     if (this.get('_isRunning')) {
+      cancel(this._handle);
       this._handle = later(() => {
         run(this.get('callback'));
         this._poll();

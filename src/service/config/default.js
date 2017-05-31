@@ -30,11 +30,11 @@ module.exports = {
   }
   ,
   'ids:enable-rules': [
-    // 'botcc.rules',
-    // 'ciarmy.rules',
-    // 'compromised.rules',
-    // 'drop.rules',
-    // 'dshield.rules',
+    'botcc.rules',
+    'ciarmy.rules',
+    'compromised.rules',
+    'drop.rules',
+    'dshield.rules',
     'emerging-attack_response.rules',
     'emerging-chat.rules',
     'emerging-current_events.rules',
@@ -68,5 +68,6 @@ module.exports = {
     'smtp-events.rules',
     'dns-events.rules',
     'tls-events.rules'
-  ]
+  ],
+  'ids:available-rules': []
 };

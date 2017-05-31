@@ -48,9 +48,14 @@ function getId() {
   return id;
 }
 
+function underscored(str) {
+  return str.trim().replace(/([a-z\d])([A-Z]+)/g, '$1_$2').replace(/[-\s]+/g, '_').toLowerCase();
+};
+
 module.exports = {
   exec,
   xml2js,
   ActionBlock,
-  getId
+  getId,
+  underscored
 };

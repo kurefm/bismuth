@@ -7,3 +7,6 @@ nmap:
 
 elasticsearch:
   url: ELASTICSEARCH_URL
+
+bismuth:
+  mode: BISMUTH_MODE

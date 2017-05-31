@@ -1,6 +1,7 @@
 const { Client, errors: { NoConnections } } = require('elasticsearch');
 const { waterfall } = require('async');
 const config = require('config').elasticsearch;
+const { get, merge } = require('lodash');
 
 const client = new Client({
   host: config.url
@@ -72,8 +73,28 @@ function ifNotExistsThenCreateDoc(index, type, id, doc) {
   });
 }
 
+function simpleSearch(index, type, page, limit) {
+  return new Promise((resolve, reject) => {
+    client.search({
+      index,
+      type,
+      size: limit,
+      from: (page - 1) * limit
+    }).then(simplify, reject).then(resolve);
+  });
+}
+
+function simplify(resp) {
+  let simpled = get(resp, 'hits.hits', []).map(item =>
+    merge(item._source, { id: item._id })
+  );
+  simpled.meta = { total: Math.min(get(resp, 'hits.total', 0), 10000) };
+  return simpled;
+}
+
 module.exports = {
   client,
   waitElasticsearchStart,
-  ifNotExistsThenCreateDoc
+  ifNotExistsThenCreateDoc,
+  simpleSearch
 };

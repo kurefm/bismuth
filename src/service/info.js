@@ -22,7 +22,8 @@ function updateInfo() {
       id,
       body: {
         doc: getInfo()
-      }}).catch(logger.error);
+      }
+    }).then(() => logger.debug('Update info')).catch(logger.error);
   });
 }
 

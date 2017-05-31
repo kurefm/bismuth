@@ -19,7 +19,11 @@
       "request": "launch",
       "name": "Development",
       "cwd": "${workspaceRoot}/src",
-      "program": "${workspaceRoot}/src/app.js"
+      "program": "${workspaceRoot}/src/app.js",
+      "env": {
+        "APP_HOME": "${workspaceRoot}/src",
+        "ELASTICSEARCH_URL": "http://localhost:9200"
+      }
     },
     {
       "type": "node",

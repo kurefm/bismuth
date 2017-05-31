@@ -7,18 +7,22 @@ nmap:
 
 suricata:
   bin: suricata
-  config-path: /etc/suricata/suricata.yaml
+  config-file: /etc/suricata/suricata.yaml
   rules-path: /etc/suricata/rules
-  log-path: /var/log/suricata
+  push-rules-cron: '*/10 * * * * *'
 
 elasticsearch:
   url: 'http://localhost:9200'
   sniff:
     interval: 120000
 
+logstash:
+  bin: /home/kurefm/Apps/logstash-2.4.1/bin/logstash
+  config-file: suricata/logstash.conf
+
 bismuth:
   # `all`(hs, ids, node), `agent`(hs, ids), `hs`, `ids`, `node`
-  mode: all
+  mode: node
   api:
     prefix: '/api/v1/'
   config:
@@ -53,3 +57,4 @@ winston:
     - Base
     - Nmap
     - Suricata
+    - Logstash

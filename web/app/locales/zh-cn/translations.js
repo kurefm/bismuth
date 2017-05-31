@@ -23,6 +23,8 @@ export default {
   'alive:keepAlive': '在线心跳',
   'config:refresh': '刷新配置',
   'nmap:hostDetection': '主机发现',
+  'info:update': '更新节点信息',
+  'suricata:pushAvailableRules': '推送可用规则',
 
   'buttons.reset': '重置',
   'buttons.update': '更新',
