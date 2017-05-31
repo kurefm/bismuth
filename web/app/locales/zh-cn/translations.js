@@ -2,6 +2,10 @@ export default {
   'app.copyright': '2017 &copy Kure Fukumakoto',
   'app.name': 'BISMUTH',
 
+  'titles.notifications': '通知',
+  'links.notifications': '查看更多通知',
+
+
   'labels.index': '主页',
   'labels.jobs': '计划任务',
   'labels.setting': '系统设置',

@@ -6,3 +6,4 @@ log/
 web/dist/
 web/tmp/
 src/suricata
+src/.identity

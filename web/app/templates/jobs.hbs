@@ -1,5 +1,5 @@
 {{#ma-card title=(t 'labels.jobs')}}
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>{{t 'labels.jobs.name'}}</th>
@@ -21,4 +21,11 @@
       {{/each}}
     </tbody>
   </table>
+  <div class="bootgrid-footer">
+    <div class="row">
+      <div class="col-sm-6">
+        {{ma-pagination total=50 size=5}}
+      </div>
+    </div>
+  </div>
 {{/ma-card}}

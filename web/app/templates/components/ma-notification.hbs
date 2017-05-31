@@ -1,0 +1,27 @@
+<a data-toggle="dropdown" href="">
+  <i class="tm-icon zmdi zmdi-notifications"></i>
+  {{#if hasNotification}}
+    <i class="tmn-counts">{{total}}</i>
+  {{/if}}
+</a>
+<div class="dropdown-menu dropdown-menu-lg pull-right">
+  <div class="listview" id="notifications">
+    <div class="lv-header">
+      {{t 'titles.notifications'}}
+    </div>
+    <div class="lv-body">
+      {{#each notifications as |n|}}
+        <a class="lv-item">
+          <div class="media">
+            <div class="media-body">
+              <div class="lv-title">{{get n titlePath}}</div>
+              <small class="lv-small">{{get n descPath}}</small>
+            </div>
+          </div>
+        </a>
+      {{/each}}
+    </div>
+    <a class="lv-footer" href="">{{t 'links.notifications'}}</a>
+  </div>
+
+</div>
