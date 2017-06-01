@@ -1,0 +1,33 @@
+{{#ma-card title=(t 'labels.alerts')}}
+  <table class="table table-striped vertical-meddle">
+    <thead>
+      <tr>
+        <th>{{t 'labels.no'}}</th>
+        <th>{{t 'labels.alerts.read'}}</th>
+        <th>{{t 'labels.alerts.signature'}}</th>
+        <th>{{t 'labels.alerts.category'}}</th>
+        <th>{{t 'labels.alerts.action'}}</th>
+        <th>{{t 'labels.alerts.timestamp'}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |alert index|}}
+        <tr>
+          <td>{{list-item index page limit}}</td>
+          <td>{{i-check}}</td>
+          <td>{{alert.alert.signature}}</td>
+          <td>{{alert.alert.category}}</td>
+          <td>{{alert.alert.action}}</td>
+          <td>{{moment-format alert.timestamp 'LLL'}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="bootgrid-footer">
+    <div class="row">
+      <div class="col-sm-6">
+        {{ma-pagination total=totalPages start=startPage current=page size=windowSize}}
+      </div>
+    </div>
+  </div>
+{{/ma-card}}

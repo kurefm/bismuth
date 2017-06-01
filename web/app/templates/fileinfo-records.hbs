@@ -1,0 +1,33 @@
+{{#ma-card title=(t 'labels.fileinfo-records')}}
+  <table class="table table-striped vertical-meddle">
+    <thead>
+      <tr>
+        <th>{{t 'labels.no'}}</th>
+        <th>{{t 'labels.ids.src'}}</th>
+        <th>{{t 'labels.ids.desc'}}</th>
+        <th>{{t 'labels.fileinfo-records.filename'}}</th>
+        <th>{{t 'labels.fileinfo-records.filesize'}}</th>
+        <th>{{t 'labels.ids.timestamp'}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |fileinfo index|}}
+        <tr>
+          <td>{{list-item index page limit}}</td>
+          <td>{{fileinfo.srcIp}}:{{fileinfo.srcPort}}</td>
+          <td>{{fileinfo.destIp}}:{{fileinfo.destPort}}</td>
+          <td>{{fileinfo.fileinfo.filename}}</td>
+          <td>{{numeral fileinfo.fileinfo.size format='0.00b'}}</td>
+          <td>{{moment-format fileinfo.timestamp 'LLL'}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="bootgrid-footer">
+    <div class="row">
+      <div class="col-sm-6">
+        {{ma-pagination total=totalPages start=startPage current=page size=windowSize}}
+      </div>
+    </div>
+  </div>
+{{/ma-card}}

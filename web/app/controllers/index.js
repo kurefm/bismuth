@@ -20,6 +20,28 @@ export default Ember.Controller.extend({
           route: 'hosts'
         }]
       }, {
+        label: i18n.t('labels.ids'),
+        icon: 'zmdi zmdi-cast',
+        submenu: [{
+          label: i18n.t('labels.alerts'),
+          route: 'alerts'
+        }, {
+          label: i18n.t('labels.dns-records'),
+          route: 'dns-records'
+        }, {
+          label: i18n.t('labels.fileinfo-records'),
+          route: 'fileinfo-records'
+        }, {
+          label: i18n.t('labels.tls-records'),
+          route: 'tls-records'
+        }, {
+          label: i18n.t('labels.http-records'),
+          route: 'http-records'
+        }, {
+          label: i18n.t('labels.ssh-records'),
+          route: 'ssh-records'
+        }]
+      }, {
         label: i18n.t('labels.jobs'),
         icon: 'zmdi zmdi-shape',
         route: 'jobs'

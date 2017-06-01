@@ -1,0 +1,41 @@
+{{#ma-card title=(t 'labels.alerts')}}
+  <table class="table table-striped vertical-meddle text-center">
+    <thead>
+      <tr>
+        <th rowspan="2">{{t 'labels.no'}}</th>
+        <th rowspan="2">{{t 'labels.ids.src'}}</th>
+        <th rowspan="2">{{t 'labels.ids.desc'}}</th>
+        <th colspan="2" style="text-align: center">{{t 'labels.ssh-records.client'}}</th>
+        <th colspan="2" style="text-align: center">{{t 'labels.ssh-records.server'}}</th>
+        <th rowspan="2">{{t 'labels.ids.timestamp'}}</th>
+      </tr>
+      <tr>
+        <th style="text-align: center">{{t 'labels.ssh-records.proto_version'}}</th>
+        <th style="text-align: center">{{t 'labels.ssh-records.software_version'}}</th>
+        <th style="text-align: center">{{t 'labels.ssh-records.proto_version'}}</th>
+        <th style="text-align: center">{{t 'labels.ssh-records.software_version'}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |ssh index|}}
+        <tr>
+          <td>{{list-item index page limit}}</td>
+          <td>{{ssh.srcIp}}:{{ssh.srcPort}}</td>
+          <td>{{ssh.destIp}}:{{ssh.destPort}}</td>
+          <td>{{ssh.ssh.client.proto_version}}</td>
+          <td>{{ssh.ssh.client.software_version}}</td>
+          <td>{{ssh.ssh.server.proto_version}}</td>
+          <td>{{ssh.ssh.server.software_version}}</td>
+          <td>{{moment-format ssh.timestamp 'LLL'}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="bootgrid-footer">
+    <div class="row">
+      <div class="col-sm-6">
+        {{ma-pagination total=totalPages start=startPage current=page size=windowSize}}
+      </div>
+    </div>
+  </div>
+{{/ma-card}}

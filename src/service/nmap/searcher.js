@@ -33,7 +33,11 @@ function hosts() {
             aggs: {
               hosts: {
                 terms: {
-                  field: 'ipv4.raw'
+                  field: 'ipv4.raw',
+                  size: 10000,
+                  order: {
+                    _term: 'asc'
+                  }
                 }
               }
             }

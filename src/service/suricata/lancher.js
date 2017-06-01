@@ -8,7 +8,7 @@ const { waterfall } = require('async');
 const WORKDIR = join(process.cwd(), 'suricata');
 const CONFIG_FILE = join(WORKDIR, 'config.yaml');
 const logger = require('../../logger');
-const { exec } = require('../../utils');
+const os = require('os');
 
 let suricataProc;
 let logstashProc;
@@ -28,20 +28,21 @@ function checkWorkDir() {
   });
 }
 
-function getDefaultIf() {
-  return exec(['sh', '-c', 'route | grep default | awk \'{ print $8 }\'']).then(result => result.trim());
+function getNetIf() {
+  return Object.keys(os.networkInterfaces()).filter(netif => netif !== 'lo');
 }
 
 function start() {
-  return getDefaultIf().then(netif => {
-    suricataProc = spawn(suricata.bin, ['-c', CONFIG_FILE, '-i', netif]);
-    suricataProc.stdout.on('data', data => logger.suricata.debug(data.toString()));
-    suricataProc.stderr.on('data', data => logger.suricata.error(data.toString()));
+  let suricataArgs = ['-c', CONFIG_FILE];
+  getNetIf().forEach(netif => suricataArgs.push('-i', netif));
+  suricataProc = spawn(suricata.bin, suricataArgs);
+  suricataProc.stdout.on('data', data => logger.suricata.debug(data.toString()));
+  suricataProc.stderr.on('data', data => logger.suricata.error(data.toString()));
 
-    logstashProc = spawn(logstash.bin, ['agent', '--allow-env', '-f', logstash['config-file']]);
-    logstashProc.stdout.on('data', data => logger.logstash.debug(data.toString()));
-    logstashProc.stderr.on('data', data => logger.logstash.error(data.toString()));
-  });
+  logstashProc = spawn(logstash.bin, ['agent', '--allow-env', '-f', logstash['config-file']]);
+  logstashProc.stdout.on('data', data => logger.logstash.debug(data.toString()));
+  logstashProc.stderr.on('data', data => logger.logstash.error(data.toString()));
+
 }
 
 function reload() {

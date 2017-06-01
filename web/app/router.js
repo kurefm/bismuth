@@ -11,6 +11,12 @@ Router.map(function () {
     this.route('setting', { resetNamespace: true });
     this.route('jobs', { resetNamespace: true });
     this.route('hosts', { resetNamespace: true }, function() {});
+    this.route('alerts', { resetNamespace: true });
+    this.route('dns-records', { resetNamespace: true });
+    this.route('fileinfo-records', { resetNamespace: true });
+    this.route('tls-records', { resetNamespace: true });
+    this.route('http-records', { resetNamespace: true });
+    this.route('ssh-records', { resetNamespace: true });
   });
 });
 

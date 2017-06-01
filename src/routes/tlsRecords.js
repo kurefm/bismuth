@@ -1,8 +1,9 @@
 let router = require('express').Router();
 let service = require('../service/suricata');
+let { get } = require('lodash');
 
 router.get('/', (req, res) => {
-  service.tlsRecords(req.param('page', 1), req.param('limit', 10)).then(tls_records => res.json({
+  service.tlsRecords(get(req, 'query.page', 1), get(req, 'query.limit', 10)).then(tls_records => res.json({
     tls_records,
     meta: tls_records.meta
   }));

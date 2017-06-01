@@ -1,0 +1,37 @@
+{{#ma-card title=(t 'labels.alerts')}}
+  <table class="table table-striped vertical-meddle">
+    <thead>
+      <tr>
+        <th>{{t 'labels.no'}}</th>
+        <th>{{t 'labels.ids.src'}}</th>
+        <th>{{t 'labels.ids.desc'}}</th>
+        <th>{{t 'labels.http-records.method'}}</th>
+        <th>{{t 'labels.http-records.protocol'}}</th>
+        <th>{{t 'labels.http-records.url'}}</th>
+        <th>{{t 'labels.http-records.user_agent'}}</th>
+        <th>{{t 'labels.ids.timestamp'}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |http index|}}
+        <tr>
+          <td>{{list-item index page limit}}</td>
+          <td>{{http.srcIp}}:{{http.srcPort}}</td>
+          <td>{{http.destIp}}:{{http.destPort}}</td>
+          <td>{{http.http.http_method}}</td>
+          <td>{{http.http.protocol}}</td>
+          <td>{{http.http.url}}</td>
+          <td>{{http.http.http_user_agent}}</td>
+          <td>{{moment-format http.timestamp 'LLL'}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="bootgrid-footer">
+    <div class="row">
+      <div class="col-sm-6">
+        {{ma-pagination total=totalPages start=startPage current=page size=windowSize}}
+      </div>
+    </div>
+  </div>
+{{/ma-card}}

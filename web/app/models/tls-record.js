@@ -6,6 +6,5 @@ const {
 } = DS
 
 export default DS.Model.extend(SuricataModel, {
-  txId: attr(),
-  alert: attr()
+  tls: attr()
 });

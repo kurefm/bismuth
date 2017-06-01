@@ -1,0 +1,33 @@
+{{#ma-card title=(t 'labels.dns-records')}}
+  <table class="table table-striped vertical-meddle">
+    <thead>
+      <tr>
+        <th>{{t 'labels.no'}}</th>
+        <th>{{t 'labels.ids.src'}}</th>
+        <th>{{t 'labels.ids.desc'}}</th>
+        <th>{{t 'labels.dns-records.type'}}</th>
+        <th>{{t 'labels.dns-records.rrname'}}</th>
+        <th>{{t 'labels.ids.timestamp'}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |dns index|}}
+        <tr>
+          <td>{{list-item index page limit}}</td>
+          <td>{{dns.srcIp}}:{{dns.srcPort}}</td>
+          <td>{{dns.destIp}}:{{dns.destPort}}</td>
+          <td>{{dns.dns.type}}</td>
+          <td>{{dns.dns.rrname}}</td>
+          <td>{{moment-format dns.timestamp 'LLL'}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="bootgrid-footer">
+    <div class="row">
+      <div class="col-sm-6">
+        {{ma-pagination total=totalPages start=startPage current=page size=windowSize}}
+      </div>
+    </div>
+  </div>
+{{/ma-card}}
