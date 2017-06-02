@@ -1,5 +1,5 @@
 export default {
-  'app.copyright': '2017 &copy Kure Fukumakoto',
+  'app.copyright': '2017 &copy SHIQI WANG',
   'app.name': 'BISMUTH',
 
   'titles.notifications': '警报',

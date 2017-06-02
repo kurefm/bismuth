@@ -1,8 +1,5 @@
-bismuth:
-  id: 1f679a68-680b-4f93-9676-723836a8fdc9
-
 logstash:
-  bin: logstash
+  bin: /usr/share/logstash/bin/logstash
 
 winston:
   logger:

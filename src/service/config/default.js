@@ -1,11 +1,11 @@
 module.exports = {
-  'hs:network': '192.168.0.1/24',
+  'hs:network': '172.28.128.24/29',
   'hs:hostDetection:cron': '*/30 * * * * *',
   'hs:osDetection:auto': true,
   'hs:versionDetection:auto': true,
 
   'ids:vars:address-groups': {
-    'HOME_NET': '[192.168.0.0/24]',
+    'HOME_NET': '[172.28.128.24/29]',
     'EXTERNAL_NET': '!$HOME_NET',
     'HTTP_SERVERS': '$HOME_NET',
     'SMTP_SERVERS': '$HOME_NET',
