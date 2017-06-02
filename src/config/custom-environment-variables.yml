@@ -5,6 +5,12 @@ http:
 nmap:
   bin: NMAP_BIN
 
+suricata:
+  bin: SURICATA_BIN
+
+logstash:
+  bin: LOGSTASH_BIN
+
 elasticsearch:
   url: ELASTICSEARCH_URL
 

@@ -39,7 +39,7 @@ function start() {
   suricataProc.stdout.on('data', data => logger.suricata.debug(data.toString()));
   suricataProc.stderr.on('data', data => logger.suricata.error(data.toString()));
 
-  logstashProc = spawn(logstash.bin, ['agent', '--allow-env', '-f', logstash['config-file']]);
+  logstashProc = spawn(logstash.bin, ['-f', logstash['config-file']]);
   logstashProc.stdout.on('data', data => logger.logstash.debug(data.toString()));
   logstashProc.stderr.on('data', data => logger.logstash.error(data.toString()));
 

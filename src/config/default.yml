@@ -17,7 +17,7 @@ elasticsearch:
     interval: 120000
 
 logstash:
-  bin: /home/kurefm/Apps/logstash-2.4.1/bin/logstash
+  bin: /home/kurefm/Apps/logstash-5.2.2/bin/logstash
   config-file: suricata/logstash.conf
 
 bismuth:
