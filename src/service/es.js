@@ -88,15 +88,14 @@ function ifNotExistsThenCreateDoc(index, type, id, doc) {
   });
 }
 
-function simpleSearch(index, type, page = 1, limit = 10, query = {}) {
+function simpleSearch(index, type, page = 1, limit = 10, opts = {}) {
   return new Promise((resolve, reject) => {
-    client.search({
+    client.search(merge({
       index,
       type,
       size: limit,
       from: (page - 1) * limit,
-      query
-    }).then(simplify, reject).then(resolve);
+    }, opts)).then(simplify, reject).then(resolve);
   });
 }
 
