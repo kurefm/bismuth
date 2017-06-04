@@ -50,10 +50,6 @@ export default Ember.Controller.extend({
         label: i18n.t('labels.jobs'),
         icon: 'zmdi zmdi-format-list-numbered',
         route: 'jobs'
-      }, {
-        label: i18n.t('labels.setting'),
-        icon: 'zmdi zmdi-settings',
-        route: 'setting'
       }
     ])
   })
