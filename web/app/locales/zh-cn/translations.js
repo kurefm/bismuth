@@ -1,8 +1,9 @@
 export default {
   'app.copyright': '2017 &copy SHIQI WANG',
-  'app.name': 'BISMUTH',
+  'app.name': '分布式内网扫描与入侵检测系统 - 管理节点',
 
   'titles.notifications': '警报',
+  'titles.nodes': '节点信息',
   'links.notifications': '查看更多警报',
 
   'labels.index': '主页',
@@ -14,6 +15,18 @@ export default {
   'labels.jobs.cron': 'Cron',
   'labels.jobs.startAt': '开始时间',
   'labels.jobs.count': '运行次数',
+
+  'labels.nodes': '节点管理',
+  'labels.nodes.info': '基本信息',
+  'labels.nodes.os': '操作系统',
+  'labels.nodes.hostname': '主机名',
+  'labels.nodes.freemem': '剩余内存',
+  'labels.nodes.totalmem': '总内存',
+  'labels.nodes.uptime': '运行时间',
+  'labels.nodes.mode': '运行模式',
+  'labels.nodes.cpus': '处理器',
+  'labels.nodes.netifs': '网络接口信息',
+  'labels.nodes.lastOnline': '最后报告状态',
 
   'labels.host-scan': '主机发现',
   'labels.hosts': '主机列表',
@@ -52,14 +65,15 @@ export default {
   'labels.http-records.user_agent': ' USER AGENT',
 
   'labels.ssh-records': 'SSH记录',
-  'labels.ssh-records.client': 'SSH客户端',
-  'labels.ssh-records.server': 'SSH服务端',
-  'labels.ssh-records.proto_version': '协议',
-  'labels.ssh-records.software_version': '软件版本',
+  'labels.ssh-records.client.ssh-version': '客户端SSH版本 / 协议版本',
+  'labels.ssh-records.server.ssh-version': '服务端SSH版本 / 协议版本',
 
   'labels.ids.src': '源地址',
   'labels.ids.desc': '目的地址',
   'labels.ids.timestamp': '时间',
+
+  'labels.config.hs': '内网扫描配置项',
+  'labels.config.ids': 'IDS配置项',
 
   'alive:keepAlive': '在线心跳',
   'config:refresh': '刷新配置',
@@ -69,9 +83,30 @@ export default {
 
   'buttons.reset': '重置',
   'buttons.update': '更新',
+  'buttons.pending': '提交中',
 
-  'hs:host-detection:cron': '主机扫描间隔(CRON)',
-  'hs:network': '扫描网络',
-  'hs:os-detection:auto': '自动探测操作系统',
-  'hs:version-detection:auto': '自动探测端口服务版本',
+  'config.hs:host-detection:cron': '主机扫描间隔(CRON)',
+  'config.hs:network': '扫描网络',
+  'config.hs:os-detection:auto': '自动探测操作系统',
+  'config.hs:version-detection:auto': '自动探测端口服务版本',
+  'config.ids:vars:address-groups.home-net': '内部网络',
+  'config.ids:vars:address-groups.external-net': '外部网络',
+  'config.ids:vars:address-groups.http-servers': 'HTTP服务器地址',
+  'config.ids:vars:address-groups.smtp-servers': 'SMTP服务器地址',
+  'config.ids:vars:address-groups.sql-servers': 'SQL服务器地址',
+  'config.ids:vars:address-groups.dns-servers': 'DNS服务器地址',
+  'config.ids:vars:address-groups.telnet-servers': 'TELNET服务器地址',
+  'config.ids:vars:address-groups.aim-servers': 'AIM服务器地址',
+  'config.ids:vars:address-groups.dnp3-server': 'DNP3服务器地址',
+  'config.ids:vars:address-groups.dnp3-client': 'DNP3客户端地址',
+  'config.ids:vars:address-groups.modbus-server': 'MODBUS服务器地址',
+  'config.ids:vars:address-groups.modbus-client': 'MODBUS客户端地址',
+  'config.ids:vars:address-groups.enip-server': 'ENIP服务器地址',
+  'config.ids:vars:address-groups.enip-client': 'ENIP客户端地址',
+  'config.ids:vars:port-groups.http-ports': 'HTTP端口',
+  'config.ids:vars:port-groups.shellcode-ports': 'ShellCode端口',
+  'config.ids:vars:port-groups.oracle-ports': 'Oracle数据库端口',
+  'config.ids:vars:port-groups.ssh-ports': 'SSH端口',
+  'config.ids:vars:port-groups.dnp3-ports': 'DNP3端口',
+  'config.ids:vars:port-groups.modbus-ports': 'MODBUS端口'
 };

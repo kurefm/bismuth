@@ -1,6 +1,14 @@
 logstash:
   bin: /usr/share/logstash/bin/logstash
 
+bismuth:
+  config:
+    cron: '*/10 * * * * *'
+  alive:
+    cron: '*/30 * * * * *'
+  info:
+    cron: '* */5 * * * *'
+
 winston:
   logger:
     console:

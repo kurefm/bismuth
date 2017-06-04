@@ -33,12 +33,6 @@ function xml2js(xml, options) {
   });
 }
 
-class ActionBlock {
-  constructor(action) {
-    this.action = action;
-  }
-}
-
 function getId() {
   if (existsSync(IDFILE)) {
     return readFileSync(IDFILE).toString().trim();
@@ -50,12 +44,18 @@ function getId() {
 
 function underscored(str) {
   return str.trim().replace(/([a-z\d])([A-Z]+)/g, '$1_$2').replace(/[-\s]+/g, '_').toLowerCase();
-};
+}
+
+function wait(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
 
 module.exports = {
   exec,
   xml2js,
-  ActionBlock,
   getId,
-  underscored
+  underscored,
+  wait
 };

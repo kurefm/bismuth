@@ -17,6 +17,9 @@ Router.map(function () {
     this.route('tls-records', { resetNamespace: true });
     this.route('http-records', { resetNamespace: true });
     this.route('ssh-records', { resetNamespace: true });
+    this.route('nodes', { resetNamespace: true }, function() {
+      this.route('config', { path: '/:id/config'});
+    });
   });
 });
 

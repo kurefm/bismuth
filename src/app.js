@@ -17,9 +17,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-require('./loader').init(app).then(() => {
-  app.listen(port, host, () => logger.info(`http service run on ${host}:${port}`));
-});
+function startup() {
+  require('./loader').init(app).then(() => {
+    app.listen(port, host, () => logger.info(`http service run on ${host}:${port}`));
+  });
+}
 
-
-
+waitElasticsearchStart().then(startup);

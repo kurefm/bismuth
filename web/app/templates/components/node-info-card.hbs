@@ -1,0 +1,14 @@
+{{#if title}}
+  <div class="card-header">
+  <h2>
+    {{title}}
+    <small>{{desc}}</small>
+  </h2>
+  <ul class="actions">
+    <li>{{#link-to 'nodes.config' node.id}}<i class="zmdi zmdi-settings"></i>{{/link-to}}</li>
+  </ul>
+</div>
+{{/if}}
+<div class="card-body">
+  {{yield}}
+</div>

@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   elementId: 'sidebar',
   tagName: 'aside',
-  classNames: ['sidebar', 'c-overflow', 'animated', 'fadeInLeft'],
+  classNames: ['sidebar', 'c-overflow'],
 
   didInsertElement() {
     this._super(...arguments);

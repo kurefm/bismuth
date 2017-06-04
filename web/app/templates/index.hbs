@@ -1,6 +1,7 @@
 {{#ma-app}}
-  {{#ma-header logo=(t 'app.name')}}
-    {{ma-notification total=model.meta.total notifications=model titlePath='alert.category' descPath='alert.signature'}}
+  {{#ma-header logo=(t 'app.name') data-current-skin='teal'}}
+    {{ma-notification total=model.meta.total notifications=model moreRoute='alerts'
+      titlePath='alert.category' descPath='alert.signature'}}
   {{/ma-header}}
   {{#ma-section}}
     {{#ma-sidebar}}

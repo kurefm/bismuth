@@ -7,8 +7,9 @@ const logger = require('../logger').base;
 const { getId } = require('../utils');
 const os = require('os');
 const { getMode } = require('../loader');
+const { omit } = require('lodash');
 
-let id = getId();
+const id = getId();
 
 function init() {
   return ifNotExistsThenCreateDoc(index, type, id, getInfo()).then(updateInfo);
@@ -30,12 +31,15 @@ function updateInfo() {
 function getInfo() {
   return {
     arch: os.arch(),
+    platform: os.platform(),
+    release: os.release(),
+    hostname: os.hostname(),
     cpus: os.cpus(),
     freemem: os.freemem(),
     totalmem: os.totalmem(),
     uptime: os.uptime(),
-    netif: os.networkInterfaces(),
-    mode: getMode()
+    netifs: omit(os.networkInterfaces(), ['lo']),
+    mode: getMode(),
   };
 }
 

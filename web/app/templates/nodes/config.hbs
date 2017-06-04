@@ -1,0 +1,35 @@
+{{ma-block-header title=(concat model.id ' 节点配置')}}
+
+{{#ma-card}}
+  {{#form-for model submit=(route-action 'update') as |f|}}
+    <h4 class="m-b-15 m-t-25">{{t 'labels.config.hs'}}</h4>
+    {{f.text-field 'hs:hostDetection:cron'}}
+    {{f.text-field 'hs:network'}}
+    {{#f.custom-field 'hs:osDetection:auto' as |cf|}}
+      {{i-check checked=(mut (get cf.object 'hs:osDetection:auto'))}}
+      {{cf.label}}
+      {{cf.errors}}
+      {{cf.hint}}
+    {{/f.custom-field}}
+    {{#f.custom-field 'hs:versionDetection:auto' as |cf|}}
+      {{i-check checked=(mut (get cf.object 'hs:versionDetection:auto'))}}
+      {{cf.label}}
+      {{cf.errors}}
+      {{cf.hint}}
+    {{/f.custom-field}}
+    <h4 class="m-b-15 m-t-25">{{t 'labels.config.ids'}}</h4>
+    <div class="row">
+      <div class="col-sm-6">
+        {{#each-in (mut (get model 'ids:vars:address-groups')) as |key|}}
+          {{f.text-field (concat 'ids:vars:address-groups.' key)}}
+        {{/each-in}}
+      </div>
+      <div class="col-sm-6">
+        {{#each-in (mut (get model 'ids:vars:port-groups')) as |key|}}
+          {{f.text-field (concat 'ids:vars:port-groups.' key)}}
+        {{/each-in}}
+      </div>
+    </div>
+    {{f.submit (t 'buttons.update') pending=(t 'buttons.pending')}}
+  {{/form-for}}
+{{/ma-card}}

@@ -2,17 +2,32 @@ const { Client, errors: { NoConnections } } = require('elasticsearch');
 const { waterfall } = require('async');
 const config = require('config').elasticsearch;
 const { get, merge } = require('lodash');
+const { wait } =require('../utils');
+const logger = require('../logger').base;
 
 const client = new Client({
   host: config.url
 });
 
+const WAIT_MS = 2000;
+
 function waitElasticsearchStart() {
+  return isElasticsearchStart().then(isStart => {
+    if (!isStart) {
+      logger.warn('Waiting elasticsearch start');
+      return wait(WAIT_MS).then(()=> waitElasticsearchStart());
+    }
+  });
+}
+
+function isElasticsearchStart() {
   return new Promise((resolve, reject) => {
     client.cluster.health({
       timeout: '5s'
-    }, (error, resp, status) => {
-      console.log(error instanceof NoConnections);
+    }, (error) => {
+      if (error instanceof NoConnections) resolve(false);
+      else if (error) reject(error);
+      resolve(true);
     });
   });
 }
@@ -73,13 +88,14 @@ function ifNotExistsThenCreateDoc(index, type, id, doc) {
   });
 }
 
-function simpleSearch(index, type, page, limit) {
+function simpleSearch(index, type, page = 1, limit = 10, query = {}) {
   return new Promise((resolve, reject) => {
     client.search({
       index,
       type,
       size: limit,
-      from: (page - 1) * limit
+      from: (page - 1) * limit,
+      query
     }).then(simplify, reject).then(resolve);
   });
 }

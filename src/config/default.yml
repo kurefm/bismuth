@@ -22,21 +22,21 @@ logstash:
 
 bismuth:
   # `all`(hs, ids, node), `agent`(hs, ids), `hs`, `ids`, `node`
-  mode: all
+  mode: node
   api:
     prefix: '/api/v1/'
   config:
     index: .bismuth
     type: config
-    cron: '*/10 * * * * *'
+    cron: '*/5 * * * * *'
   alive:
     index: .bismuth
     type: alive
-    cron: '*/10 * * * * *'
+    cron: '*/5 * * * * *'
   info:
     index: .bismuth
     type: info
-    cron: '*/10 * * * * *'
+    cron: '*/5 * * * * *'
 
 
 winston:

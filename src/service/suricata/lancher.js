@@ -36,11 +36,11 @@ function start() {
   let suricataArgs = ['-c', CONFIG_FILE];
   getNetIf().forEach(netif => suricataArgs.push('-i', netif));
   suricataProc = spawn(suricata.bin, suricataArgs);
-  suricataProc.stdout.on('data', data => logger.suricata.debug(data.toString()));
+  suricataProc.stdout.on('data', data => logger.suricata.info(data.toString()));
   suricataProc.stderr.on('data', data => logger.suricata.error(data.toString()));
 
   logstashProc = spawn(logstash.bin, ['-f', logstash['config-file']]);
-  logstashProc.stdout.on('data', data => logger.logstash.debug(data.toString()));
+  logstashProc.stdout.on('data', data => logger.logstash.info(data.toString()));
   logstashProc.stderr.on('data', data => logger.logstash.error(data.toString()));
 
 }

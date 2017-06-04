@@ -1,5 +1,5 @@
 {
-  "template": "nmap*",
+  "template": "suricata*",
   "settings": {
     "index.refresh_interval": "5s",
     "number_of_shards": 3,
@@ -33,18 +33,7 @@
             }
           }
         }
-      ],
-      "properties": {
-        "scan_at": {
-          "type": "date",
-          "format": "epoch_millis",
-          "fields": {
-            "raw": {
-              "type": "long"
-            }
-          }
-        }
-      }
+      ]
     }
   }
 }

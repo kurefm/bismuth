@@ -1,4 +1,4 @@
-const { client } = require('../es');
+const { client, simpleSearch } = require('../es');
 const { waterfall } = require('async');
 const { get, merge } = require('lodash');
 

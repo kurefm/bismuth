@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   elementId: 'header',
   tagName: 'header',
-  classNames: ['clearfix', 'animated', 'fadeInDown'],
+  classNames: ['clearfix'],
   attributeBindings: ['data-current-skin'],
 
   'data-current-skin': 'blue',

@@ -19,7 +19,7 @@ function scheduleJob(jobkey, cron, job) {
 function cancelJob(jobkey) {
   for (let job of jobs) {
     if (job.jobkey === jobkey) {
-      job.cancel();
+      job.job.cancel();
       remove(jobs, item => item === job);
     }
   }

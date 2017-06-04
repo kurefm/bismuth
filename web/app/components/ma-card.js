@@ -1,9 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['card', 'animated', 'fadeInRight'],
+  classNames: ['card'],
 
-  padding: false,
+  padding: true,
 
   didInsertElement() {
     this._super(...arguments);

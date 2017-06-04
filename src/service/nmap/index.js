@@ -1,12 +1,14 @@
 const localConfig = require('config');
 const remoteConfig = require('../config');
-const { scheduleJob } = require('../job-scheduler.js');
+const { scheduleJob, cancelJob } = require('../job-scheduler.js');
 const { waterfall } = require('async');
 const { has, merge } = require('lodash');
 const logger = require('../../logger').nmap;
 const { exec } = require('../../utils');
 const { client } = require('../es');
 const { resultProcess } = require('./queue');
+
+const JOBKEY = 'hs:hostDetection:cron';
 
 function checkTemplate() {
   return new Promise((resolve, reject) => {
@@ -39,12 +41,21 @@ function checkTemplate() {
   });
 }
 
-function startScan() {
-  scheduleJob('nmap:hostDetection', remoteConfig.config()['hs:hostDetection:cron'], () => {
+function addJob() {
+  scheduleJob(JOBKEY, remoteConfig.config()['hs:hostDetection:cron'], () => {
     let config = remoteConfig.config();
     logger.debug(`Host detection run on network: ${config['hs:network']}`);
     exec([localConfig.nmap.bin, '-oX', '-', config['hs:network'], '-sP'])
       .then(resultProcess.push, logger.error);
+  });
+}
+
+function startScan() {
+  addJob();
+  remoteConfig.onChanged('hs:hostDetection:cron', () => {
+    cancelJob(JOBKEY);
+    addJob();
+    logger.debug('Job [hs:hostDetection:cron] schedule');
   });
 }
 

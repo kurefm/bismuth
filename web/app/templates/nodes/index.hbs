@@ -1,0 +1,60 @@
+{{ma-block-header title=(t 'titles.nodes')}}
+
+{{#each model as |node|}}
+  {{#node-info-card node=node}}
+    <div class="row">
+      <div class="col-sm-6">
+        <dl class="dl-horizontal">
+          <dt>{{t 'labels.nodes.os'}}</dt>
+          <dd><code>{{node.platform}} {{node.release}} {{node.arch}}</code></dd>
+          <dt>{{t 'labels.nodes.hostname'}}</dt>
+          <dd>{{node.hostname}}</dd>
+          <dt>{{t 'labels.nodes.freemem'}} / {{t 'labels.nodes.totalmem'}}</dt>
+          <dd>{{numeral node.freemem format='0.00b'}} / {{numeral node.totalmem format='0.00b'}}</dd>
+          <dt>{{t 'labels.nodes.uptime'}}</dt>
+          <dd>{{numeral node.uptime format='00:00:00'}}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>{{t 'labels.nodes.mode'}}</dt>
+          <dd>
+            {{#each node.mode as |mode|}}
+              <code>{{mode}}</code>
+            {{/each}}
+          </dd>
+        </dl>
+      </div>
+      <div class="col-sm-6">
+        <dl class="dl-horizontal">
+          <dt>{{t 'labels.nodes.lastOnline'}}</dt>
+          {{#if node.isOnline}}
+            <dd class="color-green">{{moment-from-now node.lastOnline 'LLL'}}</dd>
+          {{else}}
+            <dd class="color-red">{{moment-from-now node.lastOnline 'LLL'}}</dd>
+          {{/if}}
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>{{t 'labels.nodes.cpus'}}</dt>
+          {{#each node.cpus as |cpu|}}
+            <dd>{{cpu.model}} / {{cpu.speed}}MHz</dd>
+          {{/each}}
+        </dl>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+          {{#each-in node.netifs as |ifname|}}
+            <dl class="dl-horizontal">
+              <dt>{{ifname}}</dt>
+              {{#with (get node.netifs ifname) as |netif|}}
+                <dd>MAC: <code>{{netif.0.mac}}</code></dd>
+                {{#each netif as |ipaddr|}}
+                  <dd>{{ipaddr.family}}: <code>{{ipaddr.address}} / {{ipaddr.netmask}}</code></dd>
+                {{/each}}
+              {{/with}}
+            </dl>
+          {{/each-in}}
+      </div>
+    </div>
+  {{/node-info-card}}
+{{/each}}

@@ -1,4 +1,4 @@
-{{#ma-card title='系统设置' padding=true}}
+{{#ma-card title='系统设置'}}
   {{#form-for model submit=(route-action 'update') as |f|}}
     {{f.text-field 'hs:hostDetection:cron'}}
     {{f.text-field 'hs:network'}}

@@ -5,6 +5,7 @@ const {
 } = Ember;
 
 export default Ember.Controller.extend({
+  user: { username: 'Shiqi Wang'},
   menu: computed(function () {
     const i18n = this.get('i18n');
     return Ember.A([
@@ -14,14 +15,14 @@ export default Ember.Controller.extend({
         route: 'index'
       }, {
         label: i18n.t('labels.host-scan'),
-        icon: 'zmdi zmdi-laptop-mac',
+        icon: 'zmdi zmdi-devices',
         submenu: [{
           label: i18n.t('labels.hosts'),
           route: 'hosts'
         }]
       }, {
         label: i18n.t('labels.ids'),
-        icon: 'zmdi zmdi-cast',
+        icon: 'zmdi zmdi-remote-control-alt',
         submenu: [{
           label: i18n.t('labels.alerts'),
           route: 'alerts'
@@ -42,8 +43,12 @@ export default Ember.Controller.extend({
           route: 'ssh-records'
         }]
       }, {
+        label: i18n.t('labels.nodes'),
+        icon: 'zmdi zmdi-apps',
+        route: 'nodes'
+      }, {
         label: i18n.t('labels.jobs'),
-        icon: 'zmdi zmdi-shape',
+        icon: 'zmdi zmdi-format-list-numbered',
         route: 'jobs'
       }, {
         label: i18n.t('labels.setting'),

@@ -4,7 +4,7 @@ const logger = require('../logger').http;
 let router = require('express').Router();
 
 router.get('/', (req, res) => {
-  res.json(configService.config());
+  res.json({ config: configService.config() });
 });
 
 router.put('/', (req, res) => {
