@@ -20,7 +20,7 @@ function nodes() {
         client.search({
           index: bismuth.info.index,
           type: bismuth.info.type,
-          size: 10000
+          size: 10000,
         }).then(
           resp => callback(null, get(resp, 'hits.hits', []).map(node => merge(
             get(node, '_source'),

@@ -60,8 +60,9 @@ function load() {
     }, (error, resp) => {
       if (error) reject(error);
       if (resp) {
-        diff(config, resp._source);
+        let origin = config;
         config = resp._source;
+        diff(origin, config);
         resolve(resp._source);
       }
       reject(resp);

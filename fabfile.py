@@ -18,4 +18,5 @@ def build_web():
 
 @task
 def build():
+    local('docker rmi bismuth:0.1.0-dev')
     local('docker build -f docker/bismuth/Dockerfile . -t bismuth:0.1.0-dev')

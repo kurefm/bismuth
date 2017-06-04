@@ -46,6 +46,7 @@ function start() {
 }
 
 function reload() {
+  logger.suricata.info('Reload suricata config');
   suricataProc.kill('SIGUSR2');
 }
 

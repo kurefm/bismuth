@@ -8,7 +8,7 @@ const { exec } = require('../../utils');
 const { client } = require('../es');
 const { resultProcess } = require('./queue');
 
-const JOBKEY = 'hs:hostDetection:cron';
+const JOBKEY = 'nmap:hostDetection';
 
 function checkTemplate() {
   return new Promise((resolve, reject) => {
@@ -55,7 +55,7 @@ function startScan() {
   remoteConfig.onChanged('hs:hostDetection:cron', () => {
     cancelJob(JOBKEY);
     addJob();
-    logger.debug('Job [hs:hostDetection:cron] schedule');
+    logger.info('Job [hostDetection:cron] reschedule');
   });
 }
 
