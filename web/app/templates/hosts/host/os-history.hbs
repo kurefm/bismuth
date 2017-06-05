@@ -1,0 +1,34 @@
+<ul class="tab-nav tn-justified">
+  <li class="waves-effect">{{link-to '端口信息' 'hosts.host.ports'}}</li>
+  <li class="active waves-effect">{{link-to '系统探测记录' 'hosts.host.os-history'}}</li>
+  <li class="waves-effect">{{link-to '主机发现记录' 'hosts.host.host-history'}}</li>
+</ul>
+
+<div>
+  <table class="table table-striped vertical-meddle">
+    <thead>
+      <tr>
+        <th>名称</th>
+        <th>准确率</th>
+        <th>家族</th>
+        <th>供应商</th>
+        <th>版本</th>
+        <th>CPE设备代码</th>
+        <th>扫描时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |os|}}
+        <tr>
+          <td>{{os.name}}</td>
+          <td>{{os.accuracy}}</td>
+          <td>{{os.osfamily}}</td>
+          <td>{{os.os_vendor}}</td>
+          <td>{{os.osgen}}</td>
+          <td><code>{{os.cpe}}</code></td>
+          <td>{{moment-from-now os.scan_at 'LLL'}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

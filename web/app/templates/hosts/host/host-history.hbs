@@ -1,0 +1,30 @@
+<ul class="tab-nav tn-justified">
+  <li class="waves-effect">{{link-to '端口信息' 'hosts.host.ports'}}</li>
+  <li class="waves-effect">{{link-to '系统探测记录' 'hosts.host.os-history'}}</li>
+  <li class="active waves-effect">{{link-to '主机发现记录' 'hosts.host.host-history'}}</li>
+</ul>
+
+<div>
+  <table class="table table-striped vertical-meddle">
+    <thead>
+      <tr>
+        <th>{{t 'labels.hosts.ipv4'}}</th>
+        <th>{{t 'labels.hosts.mac'}}</th>
+        <th>{{t 'labels.hosts.vendor'}}</th>
+        <th>{{t 'labels.hosts.scanAt'}}</th>
+        <th>{{t 'labels.hosts.upReason'}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |host|}}
+        <tr>
+          <th>{{link-to host.ipv4 'hosts.host.ports' host.ipv4}}</th>
+          <th><code>{{host.mac}}</code></th>
+          <th>{{host.vendor}}</th>
+          <th>{{moment-from-now host.scan_at 'LLL'}}</th>
+          <th>{{host.up_reason}}</th>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

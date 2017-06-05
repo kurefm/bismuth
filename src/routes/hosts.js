@@ -18,7 +18,7 @@ router.get('/:ip/os-history', (req, res) => {
 });
 
 router.get('/:ip/host-history', (req, res) => {
-  service.hostHistory(req.params.ip).then(os => res.json({ os }));
+  service.hostHistory(req.params.ip).then(hosts => res.json({ hosts }));
 });
 
 module.exports = router;

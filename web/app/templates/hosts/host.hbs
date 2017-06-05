@@ -1,0 +1,52 @@
+{{ma-block-header title='主机详情' desc=model.ipv4}}
+
+<div class="card" id="profile-main" style="min-height: 400px">
+  <div class="pm-overview c-overflow">
+    <div class="pmo-block pmo-contact hidden-xs">
+      <h2>基本信息</h2>
+
+      <dl>
+        {{#if model.osfamily}}
+          <dt>操作系统</dt>
+          <dd>{{model.osfamily}}</dd>
+        {{/if}}
+        {{#if model.osVendor}}
+          <dt>系统供应商</dt>
+          <dd>{{model.osVendor}}</dd>
+        {{/if}}
+        {{#if model.osgen}}
+          <dt>系统版本</dt>
+          <dd>{{model.osgen}}</dd>
+        {{/if}}
+        {{#if model.cpe}}
+          <dt>CPE设备代码</dt>
+          <dd><code>{{model.cpe}}</code></dd>
+        {{/if}}
+        {{#if model.accuracy}}
+          <dt>准确率</dt>
+          <dd>{{model.accuracy}}%</dd>
+        {{/if}}
+      </dl>
+      <dl>
+        <dt>IPv4</dt>
+        <dd>{{model.ipv4}}</dd>
+        {{#if model.mac}}
+          <dt>MAC</dt>
+          <dd><code>{{model.mac}}</code></dd>
+        {{/if}}
+        {{#if model.vendor}}
+          <dt>供应商</dt>
+          <dd>{{model.vendor}}</dd>
+        {{/if}}
+      </dl>
+      <dl>
+        <dt>最后发现时间</dt>
+        <dd>{{moment-from-now model.scanAt 'LLL'}}</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="pm-body clearfix">
+    {{outlet}}
+  </div>
+</div>

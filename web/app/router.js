@@ -9,7 +9,13 @@ const Router = Ember.Router.extend({
 Router.map(function () {
   this.route('index', { path: '/' }, function () {
     this.route('jobs', { resetNamespace: true });
-    this.route('hosts', { resetNamespace: true }, function() {});
+    this.route('hosts', { resetNamespace: true }, function() {
+      this.route('host', { path: '/:ip' }, function() {
+        this.route('ports');
+        this.route('os-history');
+        this.route('host-history');
+      });
+    });
     this.route('alerts', { resetNamespace: true });
     this.route('dns-records', { resetNamespace: true });
     this.route('fileinfo-records', { resetNamespace: true });

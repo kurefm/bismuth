@@ -10,5 +10,10 @@ export default DS.Model.extend({
   vendor: attr(),
   ipv4: attr(),
   scanAt: attr('date'),
-  total: attr()
+  total: attr(),
+  osfamily: attr(),
+  osgen: attr(),
+  osVendor: attr(),
+  cpe: attr(),
+  accuracy: attr()
 });

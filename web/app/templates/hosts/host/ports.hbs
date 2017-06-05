@@ -1,0 +1,32 @@
+<ul class="tab-nav tn-justified">
+  <li class="active waves-effect">{{link-to '端口信息' 'hosts.host.ports'}}</li>
+  <li class="waves-effect">{{link-to '系统探测记录' 'hosts.host.os-history'}}</li>
+  <li class="waves-effect">{{link-to '主机发现记录' 'hosts.host.host-history'}}</li>
+</ul>
+
+<div>
+  <table class="table table-striped vertical-meddle">
+    <thead>
+      <tr>
+        <th>端口</th>
+        <th>协议</th>
+        <th>服务</th>
+        <th>产品</th>
+        <th>版本信息</th>
+        <th>扩展信息</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |port|}}
+        <tr>
+          <td>{{port.portid}}</td>
+          <td>{{port.protocol}}</td>
+          <td>{{port.name}}</td>
+          <td>{{port.product}}</td>
+          <td>{{port.version}}</td>
+          <td>{{port.extrainfo}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

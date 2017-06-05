@@ -1,6 +1,6 @@
 const { client, simpleSearch } = require('../es');
 const { waterfall } = require('async');
-const { get, merge } = require('lodash');
+const { get, merge, isEmpty } = require('lodash');
 
 function createHostsMsearchBody(hosts) {
   let body = [];
@@ -68,22 +68,22 @@ function host(ip) {
     index: 'nmap',
     type: 'os',
     body: {
-      "size": 1,
-      "query": {
-        "bool": {
-          "must": {
-            "term": { "ipv4.raw": { "value": ip } }
+      size: 1,
+      query: {
+        bool: {
+          must: {
+            term: { 'ipv4.raw': { value: ip } }
           }
         }
       },
-      "sort": [
-        { "scan_at": "desc" }
+      sort: [
+        { scan_at: 'desc' }
       ]
     }
   }).then(resp => get(resp, 'hits.hits[0]._source'));
 }
 
-function createPortsMsearchBody(ip,ports) {
+function createPortsMsearchBody(ip, ports) {
   let body = [];
   ports.forEach(port => {
     body.push({ index: 'nmap', type: 'port' });
@@ -91,8 +91,8 @@ function createPortsMsearchBody(ip,ports) {
       query: {
         bool: {
           must: [
-            {term: { 'ipv4.raw': ip }},
-            {term: { 'portid.raw': port }}
+            { term: { 'ipv4.raw': ip } },
+            { term: { 'portid.raw': port } }
           ]
         }
       },
@@ -111,19 +111,21 @@ function ports(ip) {
           index: 'nmap',
           type: 'port',
           body: {
-            "query": {
-              "bool": {
-                "must": {
-                  "term": { "ipv4.raw": { "value": ip }}
+            query: {
+              bool: {
+                must: {
+                  term: { 'ipv4.raw': { value: ip } }
                 }
               }
             },
-            "aggs": {
-              "ports": {
-                "terms": { "field":	"portid.raw" }
+            aggs: {
+              ports: {
+                terms: {
+                  field: 'portid.raw',
+                }
               }
             },
-            "size": 0
+            size: 0
           }
         }).then(
           resp => callback(null, get(resp, 'aggregations.ports.buckets').map(ports => ports.key)),
@@ -131,6 +133,10 @@ function ports(ip) {
           );
       },
       (ports, callback) => {
+        if (isEmpty(ports)) {
+          callback(null, []);
+          return;
+        }
         client.msearch({ body: createPortsMsearchBody(ip, ports) }).then(
           ({ responses }) => callback(null, responses.map(resp => merge(
             get(resp, 'hits.hits[0]._source'),
@@ -147,40 +153,40 @@ function ports(ip) {
 }
 
 function osHistory(ip) {
-    return client.search({
+  return client.search({
     index: 'nmap',
     type: 'os',
     body: {
-      "size": 10000,
-      "query": {
-        "bool": {
-          "must": [
-            {"term": { "ipv4.raw":  { "value": ip }}}
+      size: 10,
+      query: {
+        bool: {
+          must: [
+            { term: { 'ipv4.raw': { value: ip } } }
           ]
         }
       },
-      "sort": [
-        { "scan_at": "desc" }
+      sort: [
+        { scan_at: 'desc' }
       ]
     }
   }).then(resp => get(resp, 'hits.hits').map(hits => hits._source));
 }
 
 function hostHistory(ip) {
-    return client.search({
+  return client.search({
     index: 'nmap',
     type: 'host',
     body: {
-      "size": 10000,
-      "query": {
-        "bool": {
-          "must": [
-            {"term": { "ipv4.raw":  { "value": ip }}}
+      size: 10,
+      query: {
+        bool: {
+          must: [
+            { term: { 'ipv4.raw': { value: ip } } }
           ]
         }
       },
-      "sort": [
-        { "scan_at": "desc" }
+      sort: [
+        { scan_at: 'desc' }
       ]
     }
   }).then(resp => get(resp, 'hits.hits').map(hits => hits._source));
