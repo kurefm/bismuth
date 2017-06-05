@@ -1,7 +1,27 @@
-const { simpleSearch } = require('../es');
+const { simpleSearch, simpleGet, client } = require('../es');
+const { merge } = require('lodash');
 
-function alerts(page = 1, limit = 10) {
-  return simpleSearch('suricata', 'alert', page, limit, { sort: 'timestamp:desc' });
+function alerts(page = 1, limit = 10, query = {}) {
+  return simpleSearch('suricata', 'alert', page, limit, merge({ sort: 'timestamp:desc' }, { body: query }));
+}
+
+function getAlert(id) {
+  return simpleGet('suricata', 'alert', id);
+}
+
+function updateAlertRead(id, read = true) {
+  return new Promise((resolve, reject) => {
+    client.update({
+      index: 'suricata',
+      type: 'alert',
+      id,
+      body: {
+        doc: {
+          read: read
+        }
+      }
+    }).then(resolve, reject);
+  });
 }
 
 function dnsRecords(page = 1, limit = 10) {
@@ -26,6 +46,8 @@ function sshRecords(page = 1, limit = 10) {
 
 module.exports = {
   alerts,
+  getAlert,
+  updateAlertRead,
   dnsRecords,
   tlsRecords,
   fileinfoRecords,

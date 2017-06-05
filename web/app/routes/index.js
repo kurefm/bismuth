@@ -3,6 +3,6 @@ import PollsterMixin from '../mixins/pollster';
 
 export default Ember.Route.extend(PollsterMixin, {
   model() {
-    return this.store.query('alert', {});
+    return this.store.query('alert', { read: false });
   }
 });

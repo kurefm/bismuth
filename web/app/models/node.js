@@ -24,5 +24,8 @@ export default DS.Model.extend({
   isOnline: computed('lastOnline', function() {
     // 5 min
     return (new Date() - this.get('lastOnline') <= 300000);
+  }),
+  isConfigurable: computed('mode', function () {
+    return this.get('mode').includes('hs') || this.get('mode').includes('ids');
   })
 });

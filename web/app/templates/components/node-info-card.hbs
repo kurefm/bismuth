@@ -4,9 +4,11 @@
     {{title}}
     <small>{{desc}}</small>
   </h2>
-  <ul class="actions">
-    <li>{{#link-to 'nodes.config' node.id}}<i class="zmdi zmdi-settings"></i>{{/link-to}}</li>
-  </ul>
+  {{#if node.isConfigurable}}
+    <ul class="actions">
+      <li>{{#link-to 'nodes.config' node.id}}<i class="zmdi zmdi-settings"></i>{{/link-to}}</li>
+    </ul>
+  {{/if}}
 </div>
 {{/if}}
 <div class="card-body">

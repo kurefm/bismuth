@@ -14,7 +14,7 @@
       {{#each model as |alert index|}}
         <tr>
           <td>{{list-item index page limit}}</td>
-          <td>{{i-check}}</td>
+          <td>{{i-check checked=alert.read}}</td>
           <td>{{alert.alert.signature}}</td>
           <td>{{alert.alert.category}}</td>
           <td>{{alert.alert.action}}</td>

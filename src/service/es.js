@@ -95,7 +95,13 @@ function simpleSearch(index, type, page = 1, limit = 10, opts = {}) {
       type,
       size: limit,
       from: (page - 1) * limit,
-    }, opts)).then(simplify, reject).then(resolve);
+    }, opts)).then(simplify).then(resolve).catch(reject);
+  });
+}
+
+function simpleGet(index, type, id) {
+  return new Promise((resolve, reject) => {
+    client.get({ index, type, id }).then(resp => resp._source).then(resolve).catch(reject);
   });
 }
 
@@ -111,5 +117,6 @@ module.exports = {
   client,
   waitElasticsearchStart,
   ifNotExistsThenCreateDoc,
-  simpleSearch
+  simpleSearch,
+  simpleGet
 };
