@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   service.alerts(page, limit, query).then(alerts => res.json({
     alerts,
     meta: alerts.meta
-  }));
+  })).catch(() => res.json({ alerts: [] }));
 });
 
 router.get('/:id', (req, res) => {

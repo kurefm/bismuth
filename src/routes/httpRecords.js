@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
   service.httpRecords(get(req, 'query.page', 1), get(req, 'query.limit', 10)).then(http_records => res.json({
     http_records,
     meta: http_records.meta
-  }));
+  })).catch(() => res.json({ http_records: [] }));
 });
 
 module.exports = router;
