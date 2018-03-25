@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://KureFM@gitlab.com/KureFM/bismuth.git"
+    "url": "git@github.com:KureFM/bismuth.git"
   },
   "keywords": [
     "nmap",
