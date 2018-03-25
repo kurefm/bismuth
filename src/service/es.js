@@ -11,21 +11,23 @@ const client = new Client({
 
 const WAIT_MS = 2000;
 
-function waitElasticsearchStart() {
-  return isElasticsearchStart().then(isStart => {
+function waitElasticsearchOk(index) {
+  return isElasticsearchOk(index).then(isStart => {
     if (!isStart) {
-      logger.warn('Waiting elasticsearch start');
-      return wait(WAIT_MS).then(()=> waitElasticsearchStart());
+      logger.warn('Waiting elasticsearch ok');
+      return wait(WAIT_MS).then(()=> waitElasticsearchOk(index));
     }
   });
 }
 
-function isElasticsearchStart() {
+function isElasticsearchOk(index) {
   return new Promise((resolve, reject) => {
     client.cluster.health({
-      timeout: '5s'
-    }, (error) => {
+      timeout: '5s',
+      index
+    }, (error, response) => {
       if (error instanceof NoConnections) resolve(false);
+      else if (get(response, 'status') === 'red') resolve(false);
       else if (error) reject(error);
       resolve(true);
     });
@@ -115,7 +117,7 @@ function simplify(resp) {
 
 module.exports = {
   client,
-  waitElasticsearchStart,
+  waitElasticsearchOk,
   ifNotExistsThenCreateDoc,
   simpleSearch,
   simpleGet

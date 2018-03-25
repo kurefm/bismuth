@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('./logger').base;
-const { waitElasticsearchStart } = require('./service/es');
+const { waitElasticsearchOk } = require('./service/es');
 const { http: { port, host } } = require('config');
 const morgan = require('morgan');
 // require('./service/nmap');
@@ -23,4 +23,8 @@ function startup() {
   });
 }
 
-waitElasticsearchStart().then(startup);
+process.on('unhandledRejection', error => {
+  logger.info('unhandledRejection', error.message);
+});
+
+waitElasticsearchOk().then(startup);

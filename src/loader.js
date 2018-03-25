@@ -10,12 +10,12 @@ const { underscored } = require('./utils');
 
 function getMode() {
   switch (mode) {
-    case 'all':
-      return ['hs', 'ids', 'node'];
-    case 'agent':
-      return ['hs', 'ids'];
-    default:
-      return mode.split(',');
+  case 'all':
+    return ['hs', 'ids', 'node'];
+  case 'agent':
+    return ['hs', 'ids'];
+  default:
+    return mode.split(',');
   }
 }
 

@@ -1,4 +1,4 @@
-FROM elasticsearch:2.4.4-alpine
+FROM elasticsearch:2.4.6-alpine
 
 MAINTAINER Kure Fukumakoto
 

@@ -1,13 +1,35 @@
-const { ifNotExistsThenCreateDoc, client } = require('../es');
 const {
-  bismuth: { config: { index, type, cron } }
+  ifNotExistsThenCreateDoc,
+  waitElasticsearchOk,
+  client
+} = require('../es');
+const {
+  bismuth: {
+    config: {
+      index,
+      type,
+      cron
+    }
+  }
 } = require('config');
-const { scheduleJob } = require('../job-scheduler');
+const {
+  scheduleJob
+} = require('../job-scheduler');
 const logger = require('../../logger').base;
-const { getId } = require('../../utils');
-const { waterfall } = require('async');
-const { has, isEqual, isEmpty } = require('lodash');
-const { EventEmitter } = require('events');
+const {
+  getId
+} = require('../../utils');
+const {
+  waterfall
+} = require('async');
+const {
+  has,
+  isEqual,
+  isEmpty
+} = require('lodash');
+const {
+  EventEmitter
+} = require('events');
 
 let config = {};
 let configChangeEmitter = new EventEmitter();
@@ -46,7 +68,7 @@ function checkTemplate() {
 }
 
 function init() {
-  return checkTemplate().then(() =>
+  return checkTemplate().then(() => waitElasticsearchOk(index)).then(() =>
     ifNotExistsThenCreateDoc(index, type, id, require('./default')).then(load).then(autoRefresh)
   );
 }
@@ -81,7 +103,9 @@ function update(config) {
     index,
     type,
     id,
-    body: { doc: config }
+    body: {
+      doc: config
+    }
   }).then(resolve, reject));
 }
 

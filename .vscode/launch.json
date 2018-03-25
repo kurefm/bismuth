@@ -22,7 +22,8 @@
       "program": "${workspaceRoot}/src/app.js",
       "env": {
         "APP_HOME": "${workspaceRoot}/src",
-        "ELASTICSEARCH_URL": "http://localhost:9200"
+        "ELASTICSEARCH_URL": "http://localhost:9200",
+        "BISMUTH_MODE": "node"
       }
     },
     {
