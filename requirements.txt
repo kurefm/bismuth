@@ -1,2 +1,0 @@
-Fabric==1.13.1
-python-dotenv==0.6.2
